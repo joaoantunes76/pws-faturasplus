@@ -18,7 +18,7 @@ class AuthController extends BaseController
                 $username = $_POST["username"];
                 $password = $_POST["password"];
                 if($this->auth->CheckAuth($username, $password)){
-                    $this->redirect(ROTA_HOME);
+                    $this->redirect(ROTA_DEBUG_GET_USERS);
                 }
                 else{
                     $error = true;

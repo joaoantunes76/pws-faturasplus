@@ -3,7 +3,7 @@
 abstract class BaseController
 {
     public function redirect($r){
-        header("Location: http://localhost/Ficha7/index.php?r=".$r);
+        header("Location: http://localhost/pws-faturasplus/index.php?r=".$r);
         die();
     }
 
@@ -19,5 +19,4 @@ abstract class BaseController
             $this->redirect(ROTA_LOGIN);
         }
     }
-
 }

@@ -3,7 +3,7 @@
 class User{
     protected $id;
     protected $username;
-    protected $password;
+    public $password;
     protected $email;
     protected $role;
     protected $telefone;
@@ -27,11 +27,47 @@ class User{
     }
 
     public function getUsers(){
+        $sql = "SELECT * FROM users";
+        return $this->getUsersBySQL($sql);
+    }
+
+    public function getUserById($id){
+        $sql = "SELECT * FROM users WHERE id = '$id'";
+        return $this->getUserBySQL($sql);
+    }
+
+    public function getUserByUsername($username){
+        $sql = "SELECT * FROM users WHERE username LIKE '$username'";
+        return $this->getUserBySQL($sql);
+    }
+
+    public function getUserByEmail($email){
+        $sql = "SELECT * FROM users WHERE email LIKE '$email'";
+        return $this->getUserBySQL($sql);
+    }
+
+    public function saveUser(){
+
+    }
+
+    private function getUserBySQL($sql){
         $mysqli = new mysqli("localhost","root","","faturas");
         if(!$mysqli->connect_error){
-            $sql = "SELECT * FROM users";
             $result = $mysqli->query($sql);
+            if($result->num_rows > 0){
+                $row = $result->fetch_assoc();
+                return new User($row["id"], $row["username"], $row["password"], $row["email"], $row["roleId"], $row["telefone"], $row["nif"], $row["morada"], $row["codigoPostal"], $row["localidade"]);
+            }
+            else{
+                return "No user found by that email";
+            }
+        }
+    }
 
+    private function getUsersBySQL($sql){
+        $mysqli = new mysqli("localhost","root","","faturas");
+        if(!$mysqli->connect_error){
+            $result = $mysqli->query($sql);
             if($result->num_rows > 0){
                 $users = array();
                 while($row = $result->fetch_assoc()) {
@@ -44,60 +80,5 @@ class User{
                 return "No users found";
             }
         }
-    }
-
-    public function getUserById($id){
-        $mysqli = new mysqli("localhost","root","","faturas");
-        if(!$mysqli->connect_error){
-            $sql = "SELECT * FROM users WHERE id = '$id'";
-            $result = $mysqli->query($sql);
-
-            if($result->num_rows > 0){
-                $row = $result->fetch_assoc(); 
-                $user = new User($row["id"], $row["username"], $row["password"], $row["email"], $row["roleId"], $row["telefone"], $row["nif"], $row["morada"], $row["codigoPostal"], $row["localidade"]);
-                return $user;
-            }
-            else{
-                return "No user found by that id";
-            }
-        }
-    }
-
-    public function getUserByUsername($username){
-        $mysqli = new mysqli("localhost","root","","faturas");
-        if(!$mysqli->connect_error){
-            $sql = "SELECT * FROM users WHERE username LIKE '$username'";
-            $result = $mysqli->query($sql);
-
-            if($result->num_rows > 0){
-                $row = $result->fetch_assoc(); 
-                $user = new User($row["id"], $row["username"], $row["password"], $row["email"], $row["roleId"], $row["telefone"], $row["nif"], $row["morada"], $row["codigoPostal"], $row["localidade"]);
-                return $user;
-            }
-            else{
-                return "No user found by that username";
-            }
-        }
-    }
-
-    public function getUserByEmail($email){
-        $mysqli = new mysqli("localhost","root","","faturas");
-        if(!$mysqli->connect_error){
-            $sql = "SELECT * FROM users WHERE email LIKE '$email'";
-            $result = $mysqli->query($sql);
-
-            if($result->num_rows > 0){
-                $row = $result->fetch_assoc(); 
-                $user = new User($row["id"], $row["username"], $row["password"], $row["email"], $row["roleId"], $row["telefone"], $row["nif"], $row["morada"], $row["codigoPostal"], $row["localidade"]);
-                return $user;
-            }
-            else{
-                return "No user found by that email";
-            }
-        }
-    }
-
-    public function saveUser(){
-
     }
 }

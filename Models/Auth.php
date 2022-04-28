@@ -7,7 +7,9 @@ class Auth
     }
 
     function CheckAuth($username, $password){
-        if($username == "admin" && $password == "admin123"){
+        $user = new User();
+        $user = $user->getUserByUsername($username);
+        if($user->password == hash('sha256', $password)){
             $_SESSION["user"] = $username;
             return true;
         }

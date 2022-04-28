@@ -1,6 +1,6 @@
 <?php
 
-class BaseController
+abstract class BaseController
 {
     public function redirect($r){
         header("Location: http://localhost/Ficha7/index.php?r=".$r);

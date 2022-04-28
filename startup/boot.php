@@ -6,6 +6,7 @@ include_once 'Models/User.php';
 include_once 'Models/Role.php';
 include_once 'Models/Permission.php';
 include_once 'Controllers/BaseController.php';
+include_once 'Controllers/BaseAuthController.php';
 include_once 'Controllers/AuthController.php';
 include_once 'Controllers/DebugController.php';
 

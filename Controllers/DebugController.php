@@ -4,7 +4,6 @@ class DebugController extends BaseController
 {
 
     public function index(){
-        $this->redirect()
         $user = new User();
         $roles = new Role();
         $permissions = new Permission();

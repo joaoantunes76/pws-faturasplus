@@ -3,7 +3,7 @@
 class Role{
     protected $id;
     protected $name;
-    protected $permissions = array();
+    public $permissions = array();
 
     public function __construct($id = NULL, $name = NULL)
     {
@@ -21,9 +21,15 @@ class Role{
                 $roles = array();
                 while($row = $result->fetch_assoc()) {
                     $role = new Role($row["id"], $row["name"]);
-                    //TODO: (BERNARDO)
-                    //Fazer uma query para buscar as permissions juntamente com as roles e adicionar ao array $permissions
-                    array_push($roles, $role);
+                    $sqlRolesPermissions = "SELECT * FROM rolespermissions INNER JOIN permissions ON permissionId = id WHERE roleId = ".$row["id"];
+                    $rolesPermissions = $mysqli->query($sqlRolesPermissions);
+                    while($permissions = $rolesPermissions->fetch_assoc()) {
+                        $permission = new Permission($permissions["permissionId"], $permissions["name"]);
+
+                        $role->permissions[] = $permission;
+                    }
+                    $roles[] = $role;
+
                 }
                 return $roles;
             }
@@ -41,7 +47,15 @@ class Role{
 
             if($result->num_rows > 0){
                 $row = $result->fetch_assoc();
-                return new Role($row["id"], $row["name"]);
+                $role = new Role($row["id"], $row["name"]);
+                $sqlRolesPermissions = "SELECT * FROM rolespermissions INNER JOIN permissions ON permissionId = id WHERE roleId = ".$row["id"];
+                $rolesPermissions = $mysqli->query($sqlRolesPermissions);
+                while($permissions = $rolesPermissions->fetch_assoc()) {
+                    $permission = new Permission($permissions["permissionId"], $permissions["name"]);
+
+                    $role->permissions[] = $permission;
+                }
+                return $role;
             }
             else{
                 return "No roles found";

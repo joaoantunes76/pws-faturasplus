@@ -1,14 +1,15 @@
 <?php
 
 class Role{
-    protected $id;
-    protected $name;
-    public $permissions = array();
+    protected ?int $id;
+    protected ?string $name;
+    public ?array $permissions = array();
 
-    public function __construct($id = NULL, $name = NULL)
+    public function __construct(int $id = NULL, string $name = NULL, array $permissions = NULL)
     {
         $this->id = $id;
         $this->name = $name;
+        $this->permissions = $permissions;
     }
 
     public function getRoles(){

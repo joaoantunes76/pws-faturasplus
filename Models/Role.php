@@ -3,7 +3,7 @@
 class Role{
     protected ?int $id;
     protected ?string $name;
-    public ?array $permissions = array();
+    public ?array $permissions = [];
 
     public function __construct(int $id = NULL, string $name = NULL, array $permissions = NULL)
     {

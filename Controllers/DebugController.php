@@ -10,5 +10,6 @@ class DebugController extends BaseController
         echo '<pre>';
         $user = $user->getUserById(1);
         print_r($user);
+
     }
 }

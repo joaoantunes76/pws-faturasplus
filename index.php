@@ -1,6 +1,6 @@
 <?php
 
-error_reporting(E_ALL);
+error_reporting(E_ERROR);
 ini_set('display_errors', 'on');
 
 
@@ -8,19 +8,32 @@ require_once 'startup/boot.php';
 
 $auth = new Auth();
 $authController = new AuthController($auth);
-$debugController = new DebugController($auth);
+$booksController = new BooksController($auth);
 
-    if (isset($_GET["r"])) {
-        switch ($_GET["r"]) {
-            case ROTA_LOGIN:
-                $authController->login();
-                break;
-            case ROTA_DEBUG_GET_USERS:
-                $debugController->index();
-                break;
-            default:
-                echo '<h1>Error 404: Page not found</h1>';
+$route = explode( '/' , $_SERVER['REQUEST_URI']);
+
+if($route[2] == null){
+    $route[2] = "Books";
+}
+
+$class = strtolower($route[2]).'Controller';
+
+if(class_exists($class)){
+    $controller = new $class($auth);
+    if (isset($route[2])) {
+        if($route[3] == ""){
+            $route[3] = "index";
         }
-    } else {
-        $authController->login();
+        $function = strtolower($route[3]).'Action';
+
+        if (method_exists($controller, $function)){
+            $controller->$function($route[4]);
+        }
+        else{
+            include_once 'Views/PageNotFound.php';
+        }
     }
+}
+else{
+    include_once 'Views/PageNotFound.php';
+}

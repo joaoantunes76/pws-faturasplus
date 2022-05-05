@@ -2,8 +2,9 @@
 
 abstract class BaseController
 {
-    public function redirect($r){
-        header("Location: http://localhost/pws-faturasplus/index.php?r=".$r);
+    public function redirect($controller, $action, $id = null){
+        $url = strtolower("$controller/$action".($id != null ? "/$id" : ""));
+        header("Location: ".Url::getBaseUrl()."/".$url);
         die();
     }
 
@@ -14,9 +15,4 @@ abstract class BaseController
         include_once "Views/layouts/footer.php";
     }
 
-    public function loginFilter($auth){
-        if(!$auth->IsLoggedIn()){
-            $this->redirect(ROTA_LOGIN);
-        }
-    }
 }

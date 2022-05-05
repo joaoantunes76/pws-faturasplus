@@ -12,13 +12,13 @@ class AuthController extends BaseController
         $this->auth = $auth;
     }
 
-    public function login(){
+    public function loginAction(){
         if($_SERVER["REQUEST_METHOD"] === "POST"){
             if(isset($_POST["username"]) && isset($_POST["password"])){
                 $username = $_POST["username"];
                 $password = $_POST["password"];
                 if($this->auth->CheckAuth($username, $password)){
-                    $this->redirect(ROTA_DEBUG_GET_USERS);
+                    $this->redirect("Books", "Index");
                 }
                 else{
                     $error = true;
@@ -33,9 +33,9 @@ class AuthController extends BaseController
         }
     }
 
-    public function logout(){
+    public function logoutAction(){
         $this->auth->Logout();
 
-        $this->redirect(ROTA_LOGIN);
+        $this->redirect("Auth", "Login");
     }
 }

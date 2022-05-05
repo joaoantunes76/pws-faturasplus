@@ -1,6 +1,5 @@
-options -indexes
-order deny,allow
-deny from all
-<Files "index.php">
-allow from all
-</Files>
+RewriteEngine On
+RewriteRule \.(css|jpe?g|gif|png|js|ico)$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]

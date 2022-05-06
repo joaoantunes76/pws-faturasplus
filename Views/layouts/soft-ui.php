@@ -31,7 +31,7 @@
     <link rel="apple-touch-icon" sizes="76x76" href="<?= Url::getBaseUrl() ?>/public/img/apple-icon.png">
     <link rel="icon" type="image/png" href="<?= Url::getBaseUrl() ?>/public/img/favicon.png">
     <title>
-        Soft UI Dashboard by Creative Tim
+        <?= NOME_APP ?>
     </title>
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -46,7 +46,7 @@
 </head>
 
 <body class="g-sidenav-show  bg-gray-100">
-<aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 " id="sidenav-main">
+<aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 ps bg-white " id="sidenav-main">
     <div class="sidenav-header">
         <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
         <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/soft-ui-dashboard/pages/dashboard.html " target="_blank">
@@ -122,14 +122,10 @@
 </aside>
 <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
     <!-- Navbar -->
-    <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" navbar-scroll="true">
+    <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl position-sticky blur shadow-blur mt-4 left-auto top-1 z-index-stickyFs" id="navbarBlur" navbar-scroll="true">
         <div class="container-fluid py-1 px-3">
             <nav aria-label="breadcrumb">
-                <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
-                    <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Pages</a></li>
-                    <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Dashboard</li>
-                </ol>
-                <h6 class="font-weight-bolder mb-0">Dashboard</h6>
+                <h6 class="font-weight-bolder mb-0"><?= ucfirst($controller) ?></h6>
             </nav>
             <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                 <ul class="ms-md-auto pe-md-3 d-flex align-items-center navbar-nav  justify-content-end">

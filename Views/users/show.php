@@ -5,44 +5,36 @@
 ?>
 
 <section class="px-5">
-    <table class="table table-bordered">
-        <tbody>
-        <tr>
-            <td>ID:</td>
-            <td><?= $user->id ?></td>
-        </tr>
-        <tr>
-            <td>Role:</td>
-            <td><?= $user->role->name ?></td>
-        </tr>
-        <tr>
-            <td>Name:</td>
-            <td><?= $user->username ?></td>
-        </tr>
-        <tr>
-            <td>Email:</td>
-            <td><?= $user->email ?></td>
-        </tr>
-        <tr>
-            <td>Telefone:</td>
-            <td><?= $user->telefone ?></td>
-        </tr>
-        <tr>
-            <td>Nif:</td>
-            <td><?= $user->nif ?></td>
-        </tr>
-        <tr>
-            <td>Morada:</td>
-            <td><?= $user->morada ?></td>
-        </tr>
-        <tr>
-            <td>Codigo Postal:</td>
-            <td><?= $user->codigopostal ?></td>
-        </tr>
-        <tr>
-            <td>Localidade:</td>
-            <td><?= $user->localidade ?></td>
-        </tr>
-        </tbody>
-    </table>
+
+    <div class="card h-100">
+        <div class="card-header pb-0 p-3">
+            <div class="row">
+                <div class="col-md-8 d-flex align-items-center">
+                    <h6 class="mb-0">User Information</h6>
+                </div>
+                <div class="col-md-4 text-end">
+                    <a href="<?= Url::toRoute('Roles', 'Update', $user->id) ?>">
+                        <i class="fas fa-pencil-alt me-2" aria-hidden="true"></i>
+                    </a>
+                    <a href="<?= Url::toRoute('Roles', 'Delete', $user->id) ?>">
+                        <i class="far fa-trash-alt me-2" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="card-body p-3">
+            <ul class="list-group">
+                <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">ID:</strong> <?= $user->id ?></li>
+                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Role:</strong> <?= $user->role->name ?></li>
+                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Name:</strong> <?= $user->username ?></li>
+                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Email:</strong> <?= $user->email ?></li>
+                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Telefone:</strong> <?= $user->telefone ?></li>
+                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Nif:</strong> <?= $user->nif ?></li>
+                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Morada:</strong> <?= $user->morada ?></li>
+                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Codigo Postal:</strong> <?= $user->codigopostal ?></li>
+                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Localidade:</strong> <?= $user->localidade ?></li>
+            </ul>
+        </div>
+    </div>
+
 </section>

@@ -12,7 +12,7 @@
         <div class="col-12">
             <div class="card mb-4">
                 <div class="card-header pb-0">
-                    <h6>Roles table</h6>
+                    <h6>Users table</h6>
                 </div>
                 <div class="card-body px-0 pt-0 pb-2">
                     <div class="table-responsive p-0">
@@ -47,17 +47,17 @@
                                     <td><?= $user->codigopostal ?></td>
                                     <td><?= $user->localidade ?></td>
                                     <td class="align-middle text-end">
-                                        <a href="<?= Url::toRoute('Roles', 'Show', $user->id) ?>"
+                                        <a href="<?= Url::toRoute('Users', 'Show', $user->id) ?>"
                                            class="btn btn-link text-primary text-gradient px-3 mb-0" role="button">
                                             <i class="fas fa-eye me-2" aria-hidden="true"></i>
                                             Show
                                         </a>
-                                        <a href="<?= Url::toRoute('Roles', 'Update', $user->id) ?>"
+                                        <a href="<?= Url::toRoute('Users', 'Update', $user->id) ?>"
                                            class="btn btn-link text-warning text-gradient px-3 mb-0" role="button">
                                             <i class="fas fa-pencil-alt me-2" aria-hidden="true"></i>
                                             Edit
                                         </a>
-                                        <a href="<?= Url::toRoute('Roles', 'Delete', $user->id) ?>"
+                                        <a href="<?= Url::toRoute('Users', 'Delete', $user->id) ?>"
                                            class="btn btn-link text-danger text-gradient px-3 mb-0" role="button">
                                             <i class="far fa-trash-alt me-2" aria-hidden="true"></i>
                                             Delete

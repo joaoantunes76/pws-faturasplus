@@ -21,7 +21,7 @@ class RolesController extends BaseAuthController
         }
         else{
             $this->view('roles/show.php', [
-                'book' => $role
+                'role' => $role
             ]);
         }
     }
@@ -36,7 +36,7 @@ class RolesController extends BaseAuthController
             $this->redirect("Roles", "Index");
         }
         else{
-            $roles = Roles::all();
+            $roles = Role::all();
             $this->view('roles/form.php');
         }
     }
@@ -59,7 +59,7 @@ class RolesController extends BaseAuthController
             }
             else{
                 $this->view('roles/form.php', [
-                    'book' => $role
+                    'role' => $role
                 ]);
             }
         }

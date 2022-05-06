@@ -130,9 +130,9 @@
             <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                 <ul class="ms-md-auto pe-md-3 d-flex align-items-center navbar-nav  justify-content-end">
                     <li class="nav-item d-flex align-items-center">
-                        <a href="javascript:;" class="nav-link text-body font-weight-bold px-0">
+                        <a href="<?= Url::toRoute("Auth", "Logout") ?>" class="nav-link text-body font-weight-bold px-0">
                             <i class="fa fa-user me-sm-1"></i>
-                            <span class="d-sm-inline d-none">Sign In</span>
+                            <span class="d-sm-inline d-none">Logout (<?= $_SESSION["user"] ?>)</span>
                         </a>
                     </li>
                     <li class="nav-item d-xl-none ps-3 d-flex align-items-center">

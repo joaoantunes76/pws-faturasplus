@@ -7,9 +7,6 @@ ini_set('display_errors', 'on');
 require_once 'startup/boot.php';
 
 $auth = new Auth();
-$authController = new AuthController($auth);
-$RolesController = new RolesController();
-$booksController = new BooksController();
 
 $route = explode( '/' , $_SERVER['REQUEST_URI']);
 

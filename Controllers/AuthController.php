@@ -18,7 +18,7 @@ class AuthController extends BaseController
                 $username = $_POST["username"];
                 $password = $_POST["password"];
                 if($this->auth->CheckAuth($username, $password)){
-                    $this->redirect("Books", "Index");
+                    $this->redirect("Roles", "Index");
                 }
                 else{
                     $error = true;

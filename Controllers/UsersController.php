@@ -2,8 +2,21 @@
 
 class UsersController extends BaseAuthController
 {
+    private Auth $auth;
+
+    /**
+     * @param Auth $auth
+     */
+    public function __construct(Auth $auth)
+    {
+        $this->auth = $auth;
+    }
+
+
     public function indexAction()
     {
+        $this->loginFilter($this->auth);
+
         $users = User::all();
         $this->view('users/index.php', [
             'users' => $users
@@ -15,6 +28,8 @@ class UsersController extends BaseAuthController
      */
     public function showAction($id)
     {
+        $this->loginFilter($this->auth);
+
         $user = User::find(['id' => $id]);
         if(is_null($user)){
             echo '<h1>Error:</h1><h3>No book found by that id</h3>';
@@ -28,6 +43,8 @@ class UsersController extends BaseAuthController
 
     public function createAction()
     {
+        $this->loginFilter($this->auth);
+
         if($_SERVER["REQUEST_METHOD"] == "POST"){
             $user = new User();
             $user->name = $_POST["name"];
@@ -46,6 +63,8 @@ class UsersController extends BaseAuthController
      */
     public function updateAction($id)
     {
+        $this->loginFilter($this->auth);
+
         $user = User::find(['id' => $id]);
         if($_SERVER["REQUEST_METHOD"] == "POST"){
             $user->name = $_POST["name"];
@@ -71,6 +90,8 @@ class UsersController extends BaseAuthController
      */
     public function deleteAction($id)
     {
+        $this->loginFilter($this->auth);
+
         $user = Users::find(['id' => $id]);
         if(is_null($user)){
             echo '<h1>Error:</h1><h3>No book found by that id</h3>';

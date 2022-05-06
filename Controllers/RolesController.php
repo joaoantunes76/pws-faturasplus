@@ -2,8 +2,20 @@
 
 class RolesController extends BaseAuthController
 {
+    private Auth $auth;
+
+    /**
+     * @param Auth $auth
+     */
+    public function __construct(Auth $auth)
+    {
+        $this->auth = $auth;
+    }
+
     public function indexAction()
     {
+        $this->loginFilter($this->auth);
+
         $roles = Role::all();
         $this->view('roles/index.php', [
             'roles' => $roles
@@ -15,6 +27,8 @@ class RolesController extends BaseAuthController
      */
     public function showAction($id)
     {
+        $this->loginFilter($this->auth);
+
         $role = Role::find(['id' => $id]);
         if(is_null($role)){
             echo '<h1>Error:</h1><h3>No book found by that id</h3>';
@@ -28,6 +42,8 @@ class RolesController extends BaseAuthController
 
     public function createAction()
     {
+        $this->loginFilter($this->auth);
+
         if($_SERVER["REQUEST_METHOD"] == "POST"){
             $role = new Role();
             $role->name = $_POST["name"];
@@ -46,6 +62,8 @@ class RolesController extends BaseAuthController
      */
     public function updateAction($id)
     {
+        $this->loginFilter($this->auth);
+
         $role = Role::find(['id' => $id]);
         if($_SERVER["REQUEST_METHOD"] == "POST"){
             $role->name = $_POST["name"];
@@ -71,6 +89,8 @@ class RolesController extends BaseAuthController
      */
     public function deleteAction($id)
     {
+        $this->loginFilter($this->auth);
+
         $role = Roles::find(['id' => $id]);
         if(is_null($role)){
             echo '<h1>Error:</h1><h3>No book found by that id</h3>';

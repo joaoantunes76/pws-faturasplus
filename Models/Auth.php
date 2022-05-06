@@ -6,7 +6,8 @@ class Auth
         session_start();
     }
 
-    function CheckAuth($username, $password){
+    public function CheckAuth($username, $password): bool
+    {
         if($username == "admin" && $password == "admin123"){
             $_SESSION["user"] = $username;
             return true;
@@ -14,14 +15,15 @@ class Auth
         return false;
     }
 
-    function IsLoggedIn(){
-        if(isset($_SESSION["user"]) && $_SESSION["user"] != ""){
+    public function IsLoggedIn(): bool
+    {
+        if(isset($_SESSION["user"]) && $_SESSION["user"] !== ""){
             return true;
         }
         return false;
     }
 
-    function Logout(){
+    public function Logout(): void{
         session_destroy();
     }
 }

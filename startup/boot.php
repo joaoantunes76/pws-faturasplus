@@ -8,7 +8,6 @@ include_once 'Controllers/BaseAuthController.php';
 include_once 'Controllers/AuthController.php';
 include_once 'Controllers/RolesController.php';
 include_once 'Controllers/UsersController.php';
-include_once 'Controllers/BooksController.php';
 
 const NOME_APP = 'Faturas+';
 

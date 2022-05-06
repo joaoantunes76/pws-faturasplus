@@ -8,11 +8,12 @@ abstract class BaseController
         die();
     }
 
-    public function view($view, $params = []){
+    public function view($view, $params = [], $template = "soft-ui"){
         extract($params);
-        include_once "Views/layouts/header.php";
-        include_once "Views/".$view;
-        include_once "Views/layouts/footer.php";
+        ob_start();
+        include "Views/$view";
+        $content = ob_get_clean();
+        include_once "Views/layouts/$template.php";
     }
 
 }

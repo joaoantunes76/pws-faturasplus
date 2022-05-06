@@ -8,7 +8,8 @@ require_once 'startup/boot.php';
 
 $auth = new Auth();
 $authController = new AuthController($auth);
-$booksController = new BooksController($auth);
+$RolesController = new RolesController();
+$booksController = new BooksController();
 
 $route = explode( '/' , $_SERVER['REQUEST_URI']);
 
@@ -30,10 +31,11 @@ if(class_exists($class)){
             $controller->$function($route[4]);
         }
         else{
+            echo '1';
             include_once 'Views/PageNotFound.php';
         }
     }
 }
-else{
+else{;
     include_once 'Views/PageNotFound.php';
 }

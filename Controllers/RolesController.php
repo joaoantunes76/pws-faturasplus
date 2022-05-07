@@ -14,7 +14,7 @@ class RolesController extends BaseAuthController
 
     public function indexAction()
     {
-        $this->loginFilter($this->auth);
+        $this->loginFilter($this->auth, [2, 3]);
 
         $roles = Role::all();
         $this->view('roles/index.php', [
@@ -27,7 +27,7 @@ class RolesController extends BaseAuthController
      */
     public function showAction($id)
     {
-        $this->loginFilter($this->auth);
+        $this->loginFilter($this->auth, [2, 3]);
 
         $role = Role::find(['id' => $id]);
         if(is_null($role)){
@@ -42,7 +42,7 @@ class RolesController extends BaseAuthController
 
     public function createAction()
     {
-        $this->loginFilter($this->auth);
+        $this->loginFilter($this->auth, [2, 3]);
 
         if($_SERVER["REQUEST_METHOD"] == "POST"){
             $role = new Role();
@@ -62,7 +62,7 @@ class RolesController extends BaseAuthController
      */
     public function updateAction($id)
     {
-        $this->loginFilter($this->auth);
+        $this->loginFilter($this->auth, [2, 3]);
 
         $role = Role::find(['id' => $id]);
         if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -89,7 +89,7 @@ class RolesController extends BaseAuthController
      */
     public function deleteAction($id)
     {
-        $this->loginFilter($this->auth);
+        $this->loginFilter($this->auth, [2, 3]);
 
         $role = Roles::find(['id' => $id]);
         if(is_null($role)){

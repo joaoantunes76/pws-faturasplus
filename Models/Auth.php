@@ -6,9 +6,13 @@ class Auth
         session_start();
     }
 
+    /**
+     * @throws \ActiveRecord\RecordNotFound
+     */
     public function CheckAuth($username, $password): bool
     {
-        if($username == "admin" && $password == "admin123"){
+        $user = User::find(['username' => $username]);
+        if($user->password == $password){
             $_SESSION["user"] = $username;
             return true;
         }
@@ -21,6 +25,17 @@ class Auth
             return true;
         }
         return false;
+    }
+
+    /**
+     * @throws \ActiveRecord\RecordNotFound
+     */
+    public function getUserRole(): int{
+        if(isset($_SESSION["user"]) && $_SESSION["user"] !== ""){
+            $user = User::find(['username' => 'admin']);
+            return $user->role->id;
+        }
+        return -1;
     }
 
     public function Logout(): void{

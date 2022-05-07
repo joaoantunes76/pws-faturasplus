@@ -3,17 +3,13 @@
 error_reporting(E_ERROR);
 ini_set('display_errors', 'on');
 
-
 require_once 'startup/boot.php';
 
 $auth = new Auth();
-
 $route = explode( '/' , $_SERVER['REQUEST_URI']);
-
 if($route[2] == null){
-    $route[2] = "Books";
+    $route[2] = DEFAULT_ROUTE[0];
 }
-
 $class = strtolower($route[2]).'Controller';
 
 if(class_exists($class)){
@@ -28,7 +24,6 @@ if(class_exists($class)){
             $controller->$function($route[4]);
         }
         else{
-            echo '1';
             include_once 'Views/PageNotFound.php';
         }
     }

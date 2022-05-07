@@ -15,7 +15,7 @@ class UsersController extends BaseAuthController
 
     public function indexAction()
     {
-        $this->loginFilter($this->auth);
+        $this->loginFilter($this->auth, [2, 3]);
 
         $users = User::all();
         $this->view('users/index.php', [
@@ -28,7 +28,7 @@ class UsersController extends BaseAuthController
      */
     public function showAction($id)
     {
-        $this->loginFilter($this->auth);
+        $this->loginFilter($this->auth, [2, 3]);
 
         $user = User::find(['id' => $id]);
         if(is_null($user)){
@@ -43,7 +43,7 @@ class UsersController extends BaseAuthController
 
     public function createAction()
     {
-        $this->loginFilter($this->auth);
+        $this->loginFilter($this->auth, [2, 3]);
 
         if($_SERVER["REQUEST_METHOD"] == "POST"){
             $user = new User();
@@ -63,7 +63,7 @@ class UsersController extends BaseAuthController
      */
     public function updateAction($id)
     {
-        $this->loginFilter($this->auth);
+        $this->loginFilter($this->auth, [2, 3]);
 
         $user = User::find(['id' => $id]);
         if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -90,7 +90,7 @@ class UsersController extends BaseAuthController
      */
     public function deleteAction($id)
     {
-        $this->loginFilter($this->auth);
+        $this->loginFilter($this->auth, [2, 3]);
 
         $user = Users::find(['id' => $id]);
         if(is_null($user)){

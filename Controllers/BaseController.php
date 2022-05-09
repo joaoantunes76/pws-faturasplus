@@ -8,7 +8,7 @@ abstract class BaseController
         die();
     }
 
-    public function view($view, $params = [], $template = "soft-ui"){
+    public function view($view, $params = [], $template = "argon-ui"){
         extract($params);
         ob_start();
         include "Views/$view";

@@ -47,8 +47,15 @@ class UsersController extends BaseAuthController
 
         if($_SERVER["REQUEST_METHOD"] == "POST"){
             $user = new User();
-            $user->name = $_POST["name"];
-            $user->isbn = $_POST["isbn"];
+            $user->roleid = $_POST["roleid"];
+            $user->username = $_POST["username"];
+            $user->password = $_POST["password"];
+            $user->email = $_POST["email"];
+            $user->telefone = $_POST["telefone"];
+            $user->nif = $_POST["nif"];
+            $user->morada = $_POST["morada"];
+            $user->codigopostal = $_POST["codigopostal"];
+            $user->localidade = $_POST["localidade"];
             $user->save();
             $this->redirect("Users", "Index");
         }
@@ -67,8 +74,15 @@ class UsersController extends BaseAuthController
 
         $user = User::find(['id' => $id]);
         if($_SERVER["REQUEST_METHOD"] == "POST"){
-            $user->name = $_POST["name"];
-            $user->isbn = $_POST["isbn"];
+            $user->roleid = $_POST["roleid"];
+            $user->username = $_POST["username"];
+            $user->password = $_POST["password"];
+            $user->email = $_POST["email"];
+            $user->telefone = $_POST["telefone"];
+            $user->nif = $_POST["nif"];
+            $user->morada = $_POST["morada"];
+            $user->codigopostal = $_POST["codigopostal"];
+            $user->localidade = $_POST["localidade"];
             $user->save();
             $this->redirect("Users", "index");
         }

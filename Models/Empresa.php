@@ -2,6 +2,11 @@
 
 class Empresa extends \ActiveRecord\Model
 {
+
+    static $has_many = array(
+        array('funcionarios')
+    );
+
     static $validates_presence_of = array(
         array('designacaosocial', 'message' => 'It must be provided'),
         array('email', 'message' => 'It must be provided'),

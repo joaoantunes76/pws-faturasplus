@@ -1,9 +1,10 @@
 <?php
 /* @var $funcionarios Funcionario[]  */
 
+$route = explode( '/' , $_SERVER['REQUEST_URI']);
 ?>
 
-<a href="<?= Url::toRoute('Users', 'Create') ?>" class="btn btn-success" role="button">Create</a>
+<a href="<?= Url::toRoute('Empresas', 'CreateFuncionario', $route[4])?>" class="btn btn-success" role="button">Create</a>
 <br>
 <section class="mt-3">
     <div class="row">

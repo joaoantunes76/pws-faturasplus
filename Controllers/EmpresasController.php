@@ -126,4 +126,37 @@ class EmpresasController extends BaseAuthController
             'funcionarios' => $funcionarios
         ]);
     }
+
+    public function createfuncionarioAction($id)
+    {
+        $this->loginFilter($this->auth, [2, 3]);
+
+        if($_SERVER["REQUEST_METHOD"] == "POST"){
+            $user = new User();
+            $user->role_id = 2;
+            $user->username = $_POST["username"];
+            $user->password = hash('sha256', $_POST["password"]);
+            $user->email = $_POST["email"];
+            $user->telefone = $_POST["telefone"];
+            $user->nif = $_POST["nif"];
+            $user->morada = $_POST["morada"];
+            $user->codigopostal = $_POST["codigopostal"];
+            $user->localidade = $_POST["localidade"];
+            if($user->save()) {
+                $novoFuncionario = new Funcionario();
+                $novoFuncionario->user_id = $user->id;
+                $novoFuncionario->empresa_id = number_format($id);
+                $novoFuncionario->save();
+                $this->redirect("Empresas", "Index");
+            }
+            else{
+                print_r($user->errors);
+                //$this->redirect("Empresas", "CreateFuncionario", $id);
+            }
+        }
+        else{
+            $empresas = Empresa::all();
+            $this->view('empresas/form-funcionario.php');
+        }
+    }
 }

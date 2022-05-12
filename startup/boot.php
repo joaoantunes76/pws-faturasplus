@@ -2,14 +2,15 @@
 
 require_once 'vendor/autoload.php';
 require_once 'helpers/Url.php';
-include_once 'Models/Auth.php';
-include_once 'Controllers/BaseController.php';
-include_once 'Controllers/BaseAuthController.php';
-include_once 'Controllers/AuthController.php';
-include_once 'Controllers/SiteController.php';
-include_once 'Controllers/RolesController.php';
-include_once 'Controllers/EmpresasController.php';
-include_once 'Controllers/UsersController.php';
+
+spl_autoload_register(function ($class_name) {
+    if(str_contains( $class_name, "Controller")) {
+        require_once('Controllers/' . ucfirst($class_name) . '.php');
+    }
+});
+spl_autoload_register(function ($class_name) {
+    require_once('Models/' . ucfirst($class_name) . '.php');
+});
 
 const NOME_APP = 'Faturas+';
 const DEFAULT_ROUTE = ['Site', 'Index'];

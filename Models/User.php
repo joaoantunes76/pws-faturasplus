@@ -3,7 +3,7 @@
 class User extends \ActiveRecord\Model
 {
     static $belongs_to = array(
-        array('role','readonly' => true)
+        array('role')
     );
 
     static $validates_presence_of = array(

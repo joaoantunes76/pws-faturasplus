@@ -11,9 +11,9 @@ class Auth
      */
     public function CheckAuth($username, $password): bool
     {
-        $user = User::find(['username' => $username]);
+        $user = User::find(['username' => addslashes($username)]);
         if($user->password == $password){
-            $_SESSION["user"] = $username;
+            $_SESSION["user"] = addslashes($username);
             return true;
         }
         return false;
@@ -32,7 +32,7 @@ class Auth
      */
     public function getUserRole(): int{
         if(isset($_SESSION["user"]) && $_SESSION["user"] !== ""){
-            $user = User::find(['username' => 'admin']);
+            $user = User::find(['username' => addslashes($_SESSION["user"])]);
             return $user->role->id;
         }
         return -1;

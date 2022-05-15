@@ -75,7 +75,7 @@ $controller = $route[2];
             <li class="nav-item">
                 <a class="nav-link <?= strtolower($controller) === "users" ? "active" : ""  ?> " href="<?= Url::toRoute("Users", "Index") ?>">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-credit-card text-success text-sm opacity-10"></i>
+                        <i class="ni ni-single-02 text-success text-sm opacity-10"></i>
                     </div>
                     <span class="nav-link-text ms-1">Users</span>
                 </a>
@@ -83,9 +83,17 @@ $controller = $route[2];
             <li class="nav-item">
                 <a class="nav-link <?= strtolower($controller) === "empresas" ? "active" : ""  ?> " href="<?= Url::toRoute("Empresas", "Index") ?>">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-app text-info text-sm opacity-10"></i>
+                        <i class="ni ni-building text-info text-sm opacity-10"></i>
                     </div>
                     <span class="nav-link-text ms-1">Empresas</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link <?= strtolower($controller) === "faturas" ? "active" : ""  ?> " href="<?= Url::toRoute("Faturas", "Index") ?>">
+                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="ni ni-single-copy-04 text-info text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Faturas</span>
                 </a>
             </li>
         </ul>

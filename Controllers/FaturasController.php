@@ -12,11 +12,14 @@ class FaturasController extends BaseAuthController
         $this->auth = $auth;
     }
 
+    //Vista Faturas emitidas
     public function indexAction()
     {
-        $this->loginFilter($this->auth, [1, 2, 3]);
+        $this->loginFilter($this->auth, [2, 3]);
 
         $faturas = Fatura::all();
-        //TODO: acabar isto
+        $this->view('faturas/index.php', [
+            'faturas' => $faturas
+        ]);
     }
 }

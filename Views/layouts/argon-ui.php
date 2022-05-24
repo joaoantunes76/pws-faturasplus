@@ -57,44 +57,79 @@ $controller = $route[2];
     <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
         <ul class="navbar-nav">
             <li class="nav-item">
+                <?php
+                    $acceptedRoled = array(1,2,3);
+                    if(in_array(Auth::getUserRole(), $acceptedRoled)){
+                ?>
                 <a class="nav-link <?= strtolower($controller) === "site" ? "active" : ""  ?>" href="<?= Url::toRoute("Site", "Index") ?>">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
                     </div>
                     <span class="nav-link-text ms-1">Dashboard</span>
                 </a>
+                <?php
+                    }
+                ?>
             </li>
             <li class="nav-item">
+                <?php
+                    $acceptedRoled = array(3);
+                    if(in_array(Auth::getUserRole(), $acceptedRoled)){
+                ?>
                 <a class="nav-link <?= strtolower($controller) === "roles" ? "active" : ""  ?> " href="<?= Url::toRoute("Roles", "Index") ?>">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="ni ni-calendar-grid-58 text-warning text-sm opacity-10"></i>
                     </div>
                     <span class="nav-link-text ms-1">Roles</span>
                 </a>
+                <?php
+                    }
+                ?>
             </li>
             <li class="nav-item">
+                <?php
+                    $acceptedRoled = array(3);
+                    if(in_array(Auth::getUserRole(), $acceptedRoled)){
+                ?>
                 <a class="nav-link <?= strtolower($controller) === "users" ? "active" : ""  ?> " href="<?= Url::toRoute("Users", "Index") ?>">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="ni ni-single-02 text-success text-sm opacity-10"></i>
                     </div>
                     <span class="nav-link-text ms-1">Users</span>
                 </a>
+                <?php
+                    }
+                ?>
             </li>
             <li class="nav-item">
+                <?php
+                    $acceptedRoled = array(1,2,3);
+                    if(in_array(Auth::getUserRole(), $acceptedRoled)){
+                ?>
                 <a class="nav-link <?= strtolower($controller) === "empresas" ? "active" : ""  ?> " href="<?= Url::toRoute("Empresas", "Index") ?>">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="ni ni-building text-info text-sm opacity-10"></i>
                     </div>
                     <span class="nav-link-text ms-1">Empresas</span>
                 </a>
+                <?php
+                    }
+                ?>
             </li>
             <li class="nav-item">
+                <?php
+                    $acceptedRoled = array(1,2,3);
+                    if(in_array(Auth::getUserRole(), $acceptedRoled)){
+                ?>
                 <a class="nav-link <?= strtolower($controller) === "faturas" ? "active" : ""  ?> " href="<?= Url::toRoute("Faturas", "Index") ?>">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="ni ni-single-copy-04 text-info text-sm opacity-10"></i>
                     </div>
                     <span class="nav-link-text ms-1">Faturas</span>
                 </a>
+                <?php
+                    }
+                ?>
             </li>
         </ul>
     </div>

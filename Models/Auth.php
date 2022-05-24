@@ -9,7 +9,7 @@ class Auth
     /**
      * @throws \ActiveRecord\RecordNotFound
      */
-    public function CheckAuth($username, $password): bool
+    static public function CheckAuth($username, $password): bool
     {
         $user = User::find(['username' => addslashes($username)]);
         if($user->password == $password){
@@ -19,7 +19,7 @@ class Auth
         return false;
     }
 
-    public function IsLoggedIn(): bool
+    static public function IsLoggedIn(): bool
     {
         if(isset($_SESSION["user"]) && $_SESSION["user"] !== ""){
             return true;
@@ -30,7 +30,7 @@ class Auth
     /**
      * @throws \ActiveRecord\RecordNotFound
      */
-    public function getUserRole(): int{
+    static public function getUserRole(): int{
         if(isset($_SESSION["user"]) && $_SESSION["user"] !== ""){
             $user = User::find(['username' => addslashes($_SESSION["user"])]);
             return $user->role->id;

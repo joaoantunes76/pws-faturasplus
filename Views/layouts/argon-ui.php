@@ -88,7 +88,7 @@ $controller = $route[2];
             </li>
             <li class="nav-item">
                 <?php
-                    $acceptedRoled = array(3);
+                    $acceptedRoled = array(2, 3);
                     if(in_array(Auth::getUserRole(), $acceptedRoled)){
                 ?>
                 <a class="nav-link <?= strtolower($controller) === "users" ? "active" : ""  ?> " href="<?= Url::toRoute("Users", "Index") ?>">
@@ -103,7 +103,7 @@ $controller = $route[2];
             </li>
             <li class="nav-item">
                 <?php
-                    $acceptedRoled = array(1,2,3);
+                    $acceptedRoled = array(2,3);
                     if(in_array(Auth::getUserRole(), $acceptedRoled)){
                 ?>
                 <a class="nav-link <?= strtolower($controller) === "empresas" ? "active" : ""  ?> " href="<?= Url::toRoute("Empresas", "Index") ?>">

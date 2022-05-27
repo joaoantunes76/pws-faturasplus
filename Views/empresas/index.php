@@ -39,7 +39,7 @@
                                     <td><?= $empresa->nif ?></td>
                                     <td><?= $empresa->codigopostal ?></td>
                                     <td><?= $empresa->localidade ?></td>
-                                    <td><?= number_format(round($empresa->capitalsocial, 2), "2", ".") ?>€</td>
+                                    <td><?= $empresa->capitalsocial ?>€</td>
                                     <td class="align-middle text-end">
                                         <a href="<?= Url::toRoute('Empresas', 'Funcionarios', $empresa->id) ?>"
                                            class="btn btn-link text-info text-gradient px-3 mb-0" role="button">

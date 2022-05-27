@@ -175,7 +175,7 @@ function sidebarType(a) {
 
 
   // Remove text-white/text-dark classes
-  if (color == 'bg-white') {
+  if (color == 'bg-dark') {
     var textWhites = document.querySelectorAll('.sidenav .text-white');
     for (let i = 0; i < textWhites.length; i++) {
       textWhites[i].classList.remove('text-white');
@@ -199,7 +199,7 @@ function sidebarType(a) {
 
   // Remove logo-white/logo-dark
 
-  if ((color == 'bg-white') && bodyWhite) {
+  if ((color == 'bg-dark') && bodyWhite) {
     var navbarBrand = document.querySelector('.navbar-brand-img');
     var navbarBrandImg = navbarBrand.src;
 
@@ -216,7 +216,7 @@ function sidebarType(a) {
     }
   }
 
-  if (color == 'bg-white' && bodyDark) {
+  if (color == 'bg-dark' && bodyDark) {
     var navbarBrand = document.querySelector('.navbar-brand-img');
     var navbarBrandImg = navbarBrand.src;
 
@@ -229,7 +229,7 @@ function sidebarType(a) {
 
 // Set Navbar Fixed
 function navbarFixed(el) {
-  let classes = ['position-sticky', 'bg-white', 'left-auto', 'top-2', 'z-index-sticky'];
+  let classes = ['position-sticky', 'bg-dark', 'left-auto', 'top-2', 'z-index-sticky'];
   const navbar = document.getElementById('navbarBlur');
 
   if (!el.getAttribute("checked")) {
@@ -273,7 +273,7 @@ function toggleNavLinksColor(type) {
 
     navLinksToggler.forEach(element => {
       element.classList.add('bg-dark')
-      element.classList.remove('bg-white')
+      element.classList.remove('bg-dark')
     });
   } else if (type === "transparent") {
     navLinks.forEach(element => {
@@ -282,7 +282,7 @@ function toggleNavLinksColor(type) {
 
     navLinksToggler.forEach(element => {
       element.classList.remove('bg-dark')
-      element.classList.add('bg-white')
+      element.classList.add('bg-dark')
     });
   }
 }
@@ -293,7 +293,7 @@ function navbarBlurOnScroll(id) {
   const navbar = document.getElementById(id);
   let navbarScrollActive = navbar ? navbar.getAttribute("data-scroll") : false;
   let scrollDistance = 5;
-  let classes = ['bg-white', 'left-auto', 'position-sticky'];
+  let classes = ['bg-dark', 'left-auto', 'position-sticky'];
   let toggleClasses = ['shadow-none'];
 
   if (navbarScrollActive == 'true') {
@@ -385,13 +385,13 @@ function toggleSidenav() {
   if (body.classList.contains(className)) {
     body.classList.remove(className);
     setTimeout(function() {
-      sidenav.classList.remove('bg-white');
+      sidenav.classList.remove('bg-dark');
     }, 100);
     sidenav.classList.remove('bg-transparent');
 
   } else {
     body.classList.add(className);
-    sidenav.classList.add('bg-white');
+    sidenav.classList.add('bg-dark');
     sidenav.classList.remove('bg-transparent');
     iconSidenav.classList.remove('d-none');
   }
@@ -414,12 +414,12 @@ window.addEventListener("resize", navbarColorOnResize);
 function navbarColorOnResize() {
   if (window.innerWidth > 1200) {
     if (referenceButtons.classList.contains('active') && referenceButtons.getAttribute('data-class') === 'bg-transparent') {
-      sidenav.classList.remove('bg-white');
+      sidenav.classList.remove('bg-dark');
     } else {
-      sidenav.classList.add('bg-white');
+      sidenav.classList.add('bg-dark');
     }
   } else {
-    sidenav.classList.add('bg-white');
+    sidenav.classList.add('bg-dark');
     sidenav.classList.remove('bg-transparent');
   }
 }
@@ -561,7 +561,7 @@ function darkMode(el) {
   const body = document.getElementsByTagName('body')[0];
   const hr = document.querySelectorAll('div:not(.sidenav) > hr');
   const sidebar = document.querySelector('.sidenav');
-  const sidebarWhite = document.querySelectorAll('.sidenav.bg-white');
+  const sidebarWhite = document.querySelectorAll('.sidenav.bg-dark');
   const hr_card = document.querySelectorAll('div:not(.bg-gradient-dark) hr');
   const text_btn = document.querySelectorAll('button:not(.btn) > .text-dark');
   const text_span = document.querySelectorAll('span.text-dark, .breadcrumb .text-dark');
@@ -655,7 +655,7 @@ function darkMode(el) {
       btn_text_dark[i].classList.add('text-white');
     }
     for (var i = 0; i < sidebarWhite.length; i++) {
-      sidebarWhite[i].classList.remove('bg-white');
+      sidebarWhite[i].classList.remove('bg-dark');
     }
     for (var i = 0; i < svg.length; i++) {
       if (svg[i].hasAttribute('fill')) {
@@ -668,7 +668,7 @@ function darkMode(el) {
     el.setAttribute("checked", "true");
   } else {
     body.classList.remove('dark-version');
-    sidebar.classList.add('bg-white');
+    sidebar.classList.add('bg-dark');
     if (navbarBrandImg.includes('logo-ct.png')) {
       var navbarBrandImgNew = navbarBrandImg.replace("logo-ct", "logo-ct-dark");
       navbarBrand.src = navbarBrandImgNew;

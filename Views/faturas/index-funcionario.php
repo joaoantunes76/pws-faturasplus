@@ -3,6 +3,8 @@
 /* @var $faturas Fatura[] */
 ?>
 
+<a href="<?= Url::toRoute('Faturas', 'Create') ?>" class="btn btn-success" role="button">Emitir</a>
+<br>
 <section class="mt-3">
     <div class="row">
         <div class="col-12">
@@ -24,13 +26,15 @@
                             <tbody>
                             <?php
                             foreach($faturas as $fatura){
+                                if ($fatura->estado == 'Emitida') {
                                 ?>
-                                <tr>
-                                    <td class="px-5"><?= $fatura->data ?></td>
-                                    <td><?= $fatura->valorTotal ?></td>
-                                    <td><?= $fatura->ivaTotal ?></td>
-                                </tr>
-                            <?php
+                                    <tr>
+                                        <td class="px-5"><?= $fatura->data ?></td>
+                                        <td><?= $fatura->valorTotal ?></td>
+                                        <td><?= $fatura->ivaTotal ?></td>
+                                    </tr>
+                                <?php
+                                }
                             }
                             ?>
                             </tbody>

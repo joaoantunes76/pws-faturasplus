@@ -58,8 +58,8 @@ $controller = $route[2];
         <ul class="navbar-nav">
             <li class="nav-item">
                 <?php
-                    $acceptedRoled = array(1,2,3);
-                    if(in_array(Auth::getUserRole(), $acceptedRoled)){
+                    $acceptedRoles = array(1,2,3);
+                    if(in_array(Auth::getUserRole(), $acceptedRoles)){
                 ?>
                 <a class="nav-link <?= strtolower($controller) === "site" ? "active" : ""  ?>" href="<?= Url::toRoute("Site", "Index") ?>">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
@@ -73,8 +73,8 @@ $controller = $route[2];
             </li>
             <li class="nav-item">
                 <?php
-                    $acceptedRoled = array(3);
-                    if(in_array(Auth::getUserRole(), $acceptedRoled)){
+                    $acceptedRoles = array(3);
+                    if(in_array(Auth::getUserRole(), $acceptedRoles)){
                 ?>
                 <a class="nav-link <?= strtolower($controller) === "roles" ? "active" : ""  ?> " href="<?= Url::toRoute("Roles", "Index") ?>">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
@@ -88,8 +88,8 @@ $controller = $route[2];
             </li>
             <li class="nav-item">
                 <?php
-                    $acceptedRoled = array(2, 3);
-                    if(in_array(Auth::getUserRole(), $acceptedRoled)){
+                    $acceptedRoles = array(2, 3);
+                    if(in_array(Auth::getUserRole(), $acceptedRoles)){
                 ?>
                 <a class="nav-link <?= strtolower($controller) === "users" ? "active" : ""  ?> " href="<?= Url::toRoute("Users", "Index") ?>">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
@@ -103,8 +103,8 @@ $controller = $route[2];
             </li>
             <li class="nav-item">
                 <?php
-                    $acceptedRoled = array(2,3);
-                    if(in_array(Auth::getUserRole(), $acceptedRoled)){
+                    $acceptedRoles = array(2, 3);
+                    if(in_array(Auth::getUserRole(), $acceptedRoles)){
                 ?>
                 <a class="nav-link <?= strtolower($controller) === "empresas" ? "active" : ""  ?> " href="<?= Url::toRoute("Empresas", "Index") ?>">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
@@ -118,8 +118,8 @@ $controller = $route[2];
             </li>
             <li class="nav-item">
                 <?php
-                    $acceptedRoled = array(1,2,3);
-                    if(in_array(Auth::getUserRole(), $acceptedRoled)){
+                    $acceptedRoles = array(1,2,3);
+                    if(in_array(Auth::getUserRole(), $acceptedRoles)){
                 ?>
                 <a class="nav-link <?= strtolower($controller) === "faturas" ? "active" : ""  ?> " href="<?= Url::toRoute("Faturas", "Index") ?>">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">

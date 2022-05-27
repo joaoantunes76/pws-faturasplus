@@ -39,7 +39,7 @@
                                     <td><?= $cliente->codigopostal ?></td>
                                     <td><?= $cliente->localidade ?></td>
                                     <td class="align-middle text-end">
-                                        <a href="<?= Url::toRoute('Faturas', 'Create', $cliente->id) ?>"
+                                        <a href="<?= Url::toRoute('Faturas', 'EmitirSegundaFase', $cliente->id) ?>"
                                            class="btn btn-link text-warning text-gradient px-3 mb-0" role="button">
                                             <i class="fas fa-hand-pointer me-2" aria-hidden="true"></i>
                                             Selecionar

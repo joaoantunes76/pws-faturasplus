@@ -47,15 +47,15 @@ class FaturasController extends BaseAuthController
     {
         $this->loginFilter($this->auth, [2, 3]);
 
-//        $dataAtual = Carbon::now();
         $currUser = User::first(array('conditions' => 'username LIKE "'.$_SESSION['user'].'"'));
+        $dataAtual = Carbon::now()->format('Y-m-d');
 
         $ultimaFatura = Fatura::find('last', array('conditions' => array('funcionario_id LIKE ? AND cliente_id LIKE ? AND valorTotal LIKE 0.00 AND ivaTotal LIKE 0 AND estado LIKE "Em lançamento"', $currUser->id, $id)));
         if ($ultimaFatura == null){
             $fatura = new Fatura();
             $fatura->funcionario_id = $currUser->id;
             $fatura->cliente_id = $id;
-            $fatura->data = '2022-05-27';
+            $fatura->data = $dataAtual;
             $fatura->valortotal = 0;
             $fatura->ivatotal = 0;
             $fatura->estado = 'Em lançamento';
@@ -68,5 +68,24 @@ class FaturasController extends BaseAuthController
             'fatura' => $ultimaFatura,
             'linhasFatura' => $linhasFatura
         ]);
+    }
+
+    public function createlinhafaturaAction($faturaId)
+    {
+        $this->loginFilter($this->auth, [2, 3]);
+
+        if($_SERVER["REQUEST_METHOD"] == "POST"){
+            $linhaFatura = new Linhasfatura();
+            $linhaFatura->quantidade = $_POST["quantidade"];
+            $linhaFatura->valorunitario = $_POST["valorunitario"];
+            $linhaFatura->valoriva = $_POST["valoriva"];
+            $linhaFatura->fatura_id = $faturaId;
+            $linhaFatura->produto_id = $_POST["produto"];
+            $linhaFatura->save();
+            $this->redirect("Faturas", "EmitirSegundaFase");
+        }
+        else {
+            $this->view("faturas");
+        }
     }
 }

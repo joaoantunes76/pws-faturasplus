@@ -3,6 +3,8 @@
 /* @var $linhasFatura Linhasfatura[] */
 ?>
 
+<a href="<?= Url::toRoute('Faturas', '#') ?>" class="btn btn-success" role="button">Adicionar Linha Fatura</a>
+<br>
 <section class="mt-3">
     <div class="row">
         <div class="col-12">

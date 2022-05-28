@@ -9,7 +9,7 @@ spl_autoload_register(function ($class_name) {
     }
 });
 spl_autoload_register(function ($class_name) {
-    require_once('Models/' . ucfirst($class_name) . '.php');
+    include_once('Models/' . ucfirst($class_name) . '.php');
 });
 
 const NOME_APP = 'Faturas+';

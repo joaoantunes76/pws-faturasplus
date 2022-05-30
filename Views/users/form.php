@@ -18,10 +18,16 @@
         <div class="card-body p-3">
             <form class="form" method="post">
                 <div class="form-group">
-                    <label for="name">Username: </label>
+                    <label for="username">Username: </label>
                     <br>
-                    <input class="form-control" type="text" id="name" name="name" value="<?= isset($user) ? $user->username : "" ?>">
-                    <?php if(isset($user->errors)){ echo $user->errors->on('name'); }?>
+                    <input class="form-control" type="text" id="username" name="username" value="<?= isset($user) ? $user->username : "" ?>">
+                    <?php if(isset($user->errors)){ echo $user->errors->on('username'); }?>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password: </label>
+                    <br>
+                    <input class="form-control" type="password" id="password" name="password" value="<?= isset($user) ? $user->username : "" ?>">
+                    <?php if(isset($user->errors)){ echo $user->errors->on('password'); }?>
                 </div>
                 <div class="form-group">
                     <label for="email">Email: </label>

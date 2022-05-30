@@ -47,7 +47,7 @@ class UsersController extends BaseAuthController
 
         if($_SERVER["REQUEST_METHOD"] == "POST"){
             $user = new User();
-            $user->roleid = $_POST["roleid"];
+            $user->role_id = 1;
             $user->username = $_POST["username"];
             $user->password = $_POST["password"];
             $user->email = $_POST["email"];

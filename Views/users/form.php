@@ -2,6 +2,7 @@
 
 
 /* @var $user User */
+/* @var $roles Role[] */
 
 ?>
 
@@ -17,6 +18,22 @@
         </div>
         <div class="card-body p-3">
             <form class="form" method="post">
+                <div class="form-group">
+                    <label for="role_id">Role: </label>
+                    <br>
+                    <select class="form-select" name="role_id" id="role_id">
+                        <?php
+                            foreach($roles as $role){
+                                if($role->id != 2){
+                            ?>
+                                    <option value="<?= $role->id ?>"><?= $role->name ?></option>
+                            <?php
+                                }
+                            }
+                        ?>
+                    </select>
+                    <?php if(isset($user->errors)){ echo $user->errors->on('role_id'); }?>
+                </div>
                 <div class="form-group">
                     <label for="username">Username: </label>
                     <br>

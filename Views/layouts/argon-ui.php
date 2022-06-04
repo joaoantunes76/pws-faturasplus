@@ -131,6 +131,36 @@ $controller = $route[2];
                     }
                 ?>
             </li>
+            <li class="nav-item">
+                <?php
+                $acceptedRoles = array(2,3);
+                if(in_array(Auth::getUserRole(), $acceptedRoles)){
+                    ?>
+                    <a class="nav-link <?= strtolower($controller) === "produtos" ? "active" : ""  ?> " href="<?= Url::toRoute("Produtos", "Index") ?>">
+                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-single-copy-04 text-info text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Produtos</span>
+                    </a>
+                    <?php
+                }
+                ?>
+            </li>
+            <li class="nav-item">
+                <?php
+                $acceptedRoles = array(2,3);
+                if(in_array(Auth::getUserRole(), $acceptedRoles)){
+                    ?>
+                    <a class="nav-link <?= strtolower($controller) === "ivas" ? "active" : ""  ?> " href="<?= Url::toRoute("Ivas", "Index") ?>">
+                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-single-copy-04 text-info text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Ivas</span>
+                    </a>
+                    <?php
+                }
+                ?>
+            </li>
         </ul>
     </div>
 </aside>

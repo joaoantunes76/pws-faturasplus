@@ -26,7 +26,7 @@
                             foreach($roles as $role){
                                 if($role->id != 2){
                             ?>
-                                    <option value="<?= $role->id ?>"><?= $role->name ?></option>
+                                    <option value="<?= $role->id ?>" <?= $role->id == $user->role_id ? "selected" : "" ?> ><?= $role->name ?></option>
                             <?php
                                 }
                             }

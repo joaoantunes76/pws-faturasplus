@@ -49,7 +49,7 @@ class UsersController extends BaseAuthController
             $user = new User();
             $user->role_id = $_POST["role_id"];
             $user->username = $_POST["username"];
-            $user->password = $_POST["password"];
+            $user->password = hash('sha256', $_POST["password"]);
             $user->email = $_POST["email"];
             $user->telefone = $_POST["telefone"];
             $user->nif = $_POST["nif"];
@@ -78,7 +78,7 @@ class UsersController extends BaseAuthController
         if($_SERVER["REQUEST_METHOD"] == "POST"){
             $user->role_id = $_POST["role_id"];
             $user->username = $_POST["username"];
-            $user->password = $_POST["password"];
+            $user->password = hash('sha256', $_POST["password"]);
             $user->email = $_POST["email"];
             $user->telefone = $_POST["telefone"];
             $user->nif = $_POST["nif"];
@@ -94,6 +94,7 @@ class UsersController extends BaseAuthController
             }
             else{
                 $this->view('users/form.php', [
+                    'roles' => Role::all(),
                     'user' => $user
                 ]);
             }

@@ -14,6 +14,11 @@ class FaturasController extends BaseAuthController
         $this->auth = $auth;
     }
 
+    public function getDataAtual(){
+        $dataAtual = Carbon::now()->format('Y-m-d');
+        return $dataAtual;
+    }
+
     public function indexAction()
     {
         $this->loginFilter($this->auth, [1, 2, 3]);
@@ -51,9 +56,9 @@ class FaturasController extends BaseAuthController
 
         $cliente = User::find($id);
         $currUser = User::first(array('conditions' => 'username LIKE "'.$_SESSION['user'].'"'));
-        $dataAtual = Carbon::now()->format('Y-m-d');
+        $dataAtual = $this->getDataAtual();
 
-        $ultimaFatura = Fatura::find('last', array('conditions' => array('funcionario_id LIKE ? AND cliente_id LIKE ? AND valorTotal LIKE 0.00 AND ivaTotal LIKE 0 AND estado LIKE "Em lançamento"', $currUser->id, $id)));
+        $ultimaFatura = Fatura::find('last', array('conditions' => array('funcionario_id LIKE ? AND cliente_id LIKE ? AND estado LIKE "Em lançamento"', $currUser->id, $id)));
         if ($ultimaFatura == null){
             $fatura = new Fatura();
             $fatura->funcionario_id = $currUser->id;
@@ -104,6 +109,25 @@ class FaturasController extends BaseAuthController
                 $linhaFatura->fatura_id = $_POST["faturaId"];
                 $linhaFatura->produto_id = $_POST["produtoId"];
                 $linhaFatura->save();
+
+                $produto = Produto::find($_POST["produtoId"]);
+                $produto->stock = $produto->stock - $_POST["quantidade"];
+                $produto->save();
+
+                $linhas = Linhasfatura::all(array('conditions' => 'fatura_id = '.$_POST["faturaId"]));
+                $valorTotal = 0;
+                $ivaTotal = 0;
+                foreach ($linhas as $linha){
+                    $valorTotal += $linha->quantidade * ($linha->valorunitario + $linha->valoriva);
+                    $ivaTotal += $linha->quantidade * $linha->valoriva;
+                }
+
+                $fatura = Fatura::find($_POST["faturaId"]);
+                $fatura->data = $this->getDataAtual();
+                $fatura->valortotal = $valorTotal;
+                $fatura->ivatotal = $ivaTotal;
+                $fatura->save();
+
                 $this->redirect('Faturas', 'EmitirSegundaFase', $_POST["clienteId"]);
             } else {
                 $cliente = User::find($_POST["clienteId"]);
@@ -120,6 +144,36 @@ class FaturasController extends BaseAuthController
                 ]);
             }
         }
+    }
+
+    public function deletelinhafaturaAction($id)
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "POST"){
+            $clienteId = $_POST["clienteId"];
+            $produtoId = $_POST["produtoId"];
+
+            $linhaFatura = Linhasfatura::find($id);
+            $produto = Produto::find($produtoId);
+            $fatura = Fatura::find($linhaFatura->fatura_id);
+
+            $produto->stock = $produto->stock + $linhaFatura->quantidade;
+            $produto->save();
+
+            $fatura->valortotal = $fatura->valortotal - ($linhaFatura->quantidade * ($linhaFatura->valorunitario + $linhaFatura->valoriva));
+            $fatura->ivatotal = $fatura->ivatotal - ($linhaFatura->quantidade * $linhaFatura->valoriva);
+            $fatura->save();
+
+            $linhaFatura->delete();
+
+            $this->redirect('Faturas', 'EmitirSegundaFase', $clienteId);
+        } else {
+            $this->redirect('Faturas', 'index');
+        }
+    }
+
+    public function previsualizarfaturaAction()
+    {
+
     }
 
 }

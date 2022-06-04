@@ -1,16 +1,17 @@
 <?php
+/* @var $cliente User */
 /* @var $fatura Fatura */
 /* @var $linhasFatura Linhasfatura[] */
 ?>
 
-<a href="<?= Url::toRoute('Faturas', '#') ?>" class="btn btn-success" role="button">Adicionar Linha Fatura</a>
+<a href="<?= Url::toRoute('Faturas', 'EmitirTerceiraFase', $fatura->id) ?>" class="btn btn-success" role="button">Adicionar Linha Fatura</a>
 <br>
 <section class="mt-3">
     <div class="row">
         <div class="col-12">
             <div class="card mb-4">
                 <div class="card-header">
-                    <h6>Linhas de Fatura</h6>
+                    <h6>Linhas de Fatura para: <?= $cliente->username ?></h6>
                 </div>
                 <div class="card-body px-0 pt-0 pb-2">
                     <div class="table-responsive p-0">

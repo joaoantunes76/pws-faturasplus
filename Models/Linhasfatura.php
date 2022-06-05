@@ -14,4 +14,8 @@ class Linhasfatura extends ActiveRecord\Model
         array('quantidade', 'message' => 'It must be provided'),
     );
 
+    public function totalPorLinha() {
+        return $this->quantidade * ($this->valorunitario + $this->valoriva);
+    }
+
 }

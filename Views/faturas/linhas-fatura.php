@@ -11,7 +11,17 @@
             <div class="card mb-4">
                 <div class="card-header row">
                     <h6 class="col">Linhas de Fatura para: <?= $cliente->username ?></h6>
-                    <a class="col-3 btn btn-primary">Pré-visualizar Fatura</a>
+                    <?php
+                    if (!empty($linhasFatura)) {
+                    ?>
+                        <form class="col-3" method="post" action="<?= Url::toRoute('Faturas', 'PrevisualizarFatura') ?>">
+                            <input type="hidden" name="clienteId" value="<?= $cliente->id ?>">
+                            <input type="hidden" name="faturaId" value="<?= $fatura->id ?>">
+                            <input type="submit" class="btn btn-primary" value="Pré-visualizar Fatura">
+                        </form>
+                    <?php
+                    }
+                    ?>
                 </div>
                 <div class="card-body px-0 pt-0 pb-2">
                     <div class="table-responsive p-0">

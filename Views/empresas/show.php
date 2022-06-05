@@ -13,7 +13,7 @@
         <div class="card-header pb-0 p-3">
             <div class="row">
                 <div class="col-md-8 d-flex align-items-center">
-                    <h6 class="mb-0">Role Information</h6>
+                    <h6 class="mb-0">Informação da Empresa</h6>
                 </div>
                 <div class="col-md-4 text-end">
                     <a href="<?= Url::toRoute('Empresas', 'Update', $empresa->id) ?>">

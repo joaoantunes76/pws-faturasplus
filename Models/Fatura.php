@@ -17,4 +17,8 @@ class Fatura extends \ActiveRecord\Model
         array('ivatotal', 'message' => 'It must be provided'),
         array('estado', 'message' => 'It must be provided')
     );
+
+    public function paraEuro($val){
+        return number_format($val, 2, '.', '');
+    }
 }

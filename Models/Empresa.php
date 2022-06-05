@@ -17,4 +17,5 @@ class Empresa extends \ActiveRecord\Model
         array('localidade', 'message' => 'It must be provided'),
         array('capitalsocial', 'message' => 'It must be provided')
     );
+
 }

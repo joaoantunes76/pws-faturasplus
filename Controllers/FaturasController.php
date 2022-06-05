@@ -42,6 +42,7 @@ class FaturasController extends BaseAuthController
     //Mostra a vista de clientes para o funcionário escolher
     public function emitirprimeirafaseAction()
     {
+        //TODO: SEARCH BAR GET REQUEST
         $this->loginFilter($this->auth, [2, 3]);
         $clientes = User::all(array('conditions' => 'role_id LIKE 1'));
         $this->view('faturas/search-cliente.php', [
@@ -173,6 +174,35 @@ class FaturasController extends BaseAuthController
 
     public function previsualizarfaturaAction()
     {
+        $this->loginFilter($this->auth, [2, 3]);
+        if ($_SERVER["REQUEST_METHOD"] = "POST") {
+            $cliente = User::find($_POST["clienteId"]);
+            $fatura = Fatura::find($_POST["faturaId"]);
+
+            if ($fatura->cliente_id == $cliente->id){
+                $fatura->data = $this->getDataAtual();
+                $fatura->save();
+
+                $linhasFatura = Linhasfatura::all(array('conditions' => 'fatura_id LIKE '.$fatura->id));
+                $funcionario = User::find($fatura->funcionario_id);
+                $funcionarioPerfil = Funcionario::find($funcionario->id);
+                $empresa = Empresa::find($funcionarioPerfil->empresa_id);
+
+                $totalSemIva = $fatura->valortotal - $fatura->ivatotal;
+
+                $this->view('faturas/previsualizar-fatura.php', [
+                    'fatura' => $fatura,
+                    'cliente' => $cliente,
+                    'funcionario' => $funcionario,
+                    'empresa' => $empresa,
+                    'linhasFatura' => $linhasFatura,
+                    'totalSemIva' => $totalSemIva,
+                ]);
+            }
+        }
+    }
+
+    public function emitirfaturaAction(){
 
     }
 

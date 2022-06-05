@@ -1,7 +1,11 @@
 <?php
 
 /* @var $empresa Empresa */
+/* @var $role Role */
+
 ?>
+
+
 
 <section class="px-5">
 
@@ -15,9 +19,16 @@
                     <a href="<?= Url::toRoute('Empresas', 'Update', $empresa->id) ?>">
                         <i class="fas fa-pencil-alt me-2" aria-hidden="true"></i>
                     </a>
-                    <a href="<?= Url::toRoute('Empresas', 'Delete', $empresa->id) ?>">
-                        <i class="far fa-trash-alt me-2" aria-hidden="true"></i>
-                    </a>
+                    <?php
+                        if($role->id == 3){
+                        ?>
+                            <a href="<?= Url::toRoute('Empresas', 'Delete', $empresa->id) ?>">
+                                <i class="far fa-trash-alt me-2" aria-hidden="true"></i>
+                            </a>
+                        <?php
+                        }
+                    ?>
+
                 </div>
             </div>
         </div>

@@ -16,6 +16,13 @@ class EmpresasController extends BaseAuthController
     {
         $this->loginFilter($this->auth, [2, 3]);
 
+        if($this->auth::getUserRole() == 2){
+            $user = User::find(['username' => $this->auth::getUsername()]);
+            $funcionario = Funcionario::find(["user_id" => $user->id]);
+            $empresa = $funcionario->empresa;
+            $this->redirect('Empresas', 'Show', $empresa->id);
+        }
+
         $empresas = Empresa::all();
         $this->view('empresas/index.php', [
             'empresas' => $empresas
@@ -35,7 +42,8 @@ class EmpresasController extends BaseAuthController
         }
         else{
             $this->view('empresas/show.php', [
-                'empresa' => $empresa
+                'empresa' => $empresa,
+                'role' => Role::find(['id' => $this->auth::getUserRole()]),
             ]);
         }
     }

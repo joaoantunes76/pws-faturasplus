@@ -38,6 +38,13 @@ class Auth
         return -1;
     }
 
+    static public function getUsername(): string{
+        if(isset($_SESSION["user"]) && $_SESSION["user"] !== ""){
+            return $_SESSION["user"];
+        }
+        return "";
+    }
+
     public function Logout(): void{
         session_destroy();
     }

@@ -1,8 +1,7 @@
 <?php
 
 
-/* @var $user User */
-/* @var $roles Role[] */
+/* @var $produto */
 
 ?>
 
@@ -12,79 +11,60 @@
         <div class="card-header pb-0 p-3">
             <div class="row">
                 <div class="col-md-8 d-flex align-items-center">
-                    <h6 class="mb-0">User <?= isset($user) ? "Update" : "Create" ?></h6>
+                    <h6 class="mb-0">Produto <?= isset($produto) ? "Update" : "Create" ?></h6>
                 </div>
             </div>
         </div>
         <div class="card-body p-3">
             <form class="form" method="post">
                 <div class="form-group">
-                    <label for="role_id">Role: </label>
+                    <label for="referencia">Referencia: </label>
                     <br>
-                    <select class="form-select" name="role_id" id="role_id">
+                    <input class="form-control" type="number" id="referencia" name="referencia" value="<?= isset($produto) ? $produto->referencia : "" ?>">
+                    <?php if(isset($produto->errors)){ echo $produto->errors->on('referencia'); }?>
+                </div>
+                <div class="form-group">
+                    <label for="descricao">Descrição: </label>
+                    <br>
+                    <input class="form-control" type="text" id="descricao" name="descricao" value="<?= isset($produto) ? $produto->descricao : "" ?>">
+                    <?php if(isset($produto->errors)){ echo $produto->errors->on('descricao'); }?>
+                </div>
+                <div class="form-group">
+                    <label for="preco">Preço: </label>
+                    <br>
+                    <input class="form-control" type="number" id="preco" name="preco" value="<?= isset($produto) ? $produto->preco : "" ?>">
+                    <?php if(isset($produto->errors)){ echo $produto->errors->on('preco'); }?>
+                </div>
+                <div class="form-group">
+                    <label for="stock">Stock: </label>
+                    <br>
+                    <input class="form-control" type="text" id="stock" name="stock" value="<?= isset($produto) ? $produto->stock : "" ?>">
+                    <?php if(isset($produto->errors)){ echo $produto->errors->on('stock'); }?>
+                </div>
+                <div class="form-group">
+                    <label for="iva_id">IVA: </label>
+                    <br>
+                    <select class="form-select" id="iva_id" name="iva_id">
                         <?php
-                            foreach($roles as $role){
-                                if($role->id != 2){
-                            ?>
-                                    <option value="<?= $role->id ?>" <?= $role->id == $user->role_id ? "selected" : "" ?> ><?= $role->name ?></option>
-                            <?php
+                            foreach($ivas as $iva){
+                                if(isset($produto) && $iva->id == $produto->iva_id){
+                                    ?>
+                                    <option value="<?= $iva->id ?>" selected><?= $iva->percentagem ?>% (<?= $iva->descricao ?>)</option>
+                                    <?php
+                                }
+                                else{
+                                    ?>
+                                    <option value="<?= $iva->id ?>"><?= $iva->percentagem ?>% (<?= $iva->descricao ?>)</option>
+                                    <?php
                                 }
                             }
                         ?>
                     </select>
-                    <?php if(isset($user->errors)){ echo $user->errors->on('role_id'); }?>
-                </div>
-                <div class="form-group">
-                    <label for="username">Username: </label>
-                    <br>
-                    <input class="form-control" type="text" id="username" name="username" value="<?= isset($user) ? $user->username : "" ?>">
-                    <?php if(isset($user->errors)){ echo $user->errors->on('username'); }?>
-                </div>
-                <div class="form-group">
-                    <label for="password">Password: </label>
-                    <br>
-                    <input class="form-control" type="password" id="password" name="password" value="<?= isset($user) ? $user->username : "" ?>">
-                    <?php if(isset($user->errors)){ echo $user->errors->on('password'); }?>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email: </label>
-                    <br>
-                    <input class="form-control" type="text" id="email" name="email" value="<?= isset($user) ? $user->email : "" ?>">
-                    <?php if(isset($user->errors)){ echo $user->errors->on('email'); }?>
-                </div>
-                <div class="form-group">
-                    <label for="telefone">Telefone: </label>
-                    <br>
-                    <input class="form-control" type="text" id="telefone" name="telefone" value="<?= isset($user) ? $user->telefone : "" ?>">
-                    <?php if(isset($user->errors)){ echo $user->errors->on('name'); }?>
-                </div>
-                <div class="form-group">
-                    <label for="nif">NIF: </label>
-                    <br>
-                    <input class="form-control" type="text" id="nif" name="nif" value="<?= isset($user) ? $user->nif : "" ?>">
-                    <?php if(isset($user->errors)){ echo $user->errors->on('nif'); }?>
-                </div>
-                <div class="form-group">
-                    <label for="morada">Morada: </label>
-                    <br>
-                    <input class="form-control" type="text" id="morada" name="morada" value="<?= isset($user) ? $user->morada : "" ?>">
-                    <?php if(isset($user->errors)){ echo $user->errors->on('morada'); }?>
-                </div>
-                <div class="form-group">
-                    <label for="codigopostal">Codigo Postal: </label>
-                    <br>
-                    <input class="form-control" type="text" id="codigopostal" name="codigopostal" value="<?= isset($user) ? $user->codigopostal : "" ?>">
-                    <?php if(isset($user->errors)){ echo $user->errors->on('codigopostal'); }?>
-                </div>
-                <div class="form-group">
-                    <label for="localidade">Localidade: </label>
-                    <br>
-                    <input class="form-control" type="text" id="localidade" name="localidade" value="<?= isset($user) ? $user->localidade : "" ?>">
-                    <?php if(isset($user->errors)){ echo $user->errors->on('localidade'); }?>
+                    <?php if(isset($produto->errors)){ echo $produto->errors->on('iva_id'); }?>
                 </div>
                 <br>
                 <div class="form-group">
-                    <input class="btn btn-primary" type="submit" value="<?= isset($user) ? "Update" : "Create" ?>">
+                    <input class="btn btn-primary" type="submit" value="<?= isset($produto) ? "Update" : "Create" ?>">
                 </div>
             </form>
         </div>

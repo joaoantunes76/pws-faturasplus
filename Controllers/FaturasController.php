@@ -44,6 +44,7 @@ class FaturasController extends BaseAuthController
     public function emitirprimeirafaseAction()
     {
         //TODO: SEARCH BAR GET REQUEST
+        //TODO: Session para o admin escolher a empresa numa nova vista
         $this->loginFilter($this->auth, [2, 3]);
         $clientes = User::all(array('conditions' => 'role_id LIKE 1'));
         $this->view('faturas/search-cliente.php', [

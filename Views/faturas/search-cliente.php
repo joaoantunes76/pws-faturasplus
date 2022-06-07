@@ -45,6 +45,7 @@
                                             Selecionar
                                         </a>
                                     </td>
+                                    <td></td>
                                 </tr>
                                 <?php
                             }

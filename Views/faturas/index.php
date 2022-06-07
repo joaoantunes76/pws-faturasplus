@@ -29,6 +29,7 @@
                                     <td class="px-5"><?= $fatura->data ?></td>
                                     <td><?= $fatura->valorTotal ?></td>
                                     <td><?= $fatura->ivaTotal ?></td>
+                                    <td></td>
                                 </tr>
                             <?php
                             }

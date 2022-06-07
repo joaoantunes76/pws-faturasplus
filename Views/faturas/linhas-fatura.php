@@ -52,6 +52,7 @@
                                             <input type="submit" class="btn btn-link text-danger text-gradient px-3 mb-0" role="button" value="Remover">
                                         </form>
                                     </td>
+                                    <td></td>
                                 </tr>
                                 <?php
                             }

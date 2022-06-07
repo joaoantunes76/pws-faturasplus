@@ -15,7 +15,8 @@ class FaturasController extends BaseAuthController
     }
 
     public function getDataAtual(){
-        $dataAtual = Carbon::now()->format('Y-m-d');
+        //$dataAtual = Carbon::now()->format('Y-m-d');
+        $dataAtual = date('Y-m-d');
         return $dataAtual;
     }
 
@@ -55,8 +56,8 @@ class FaturasController extends BaseAuthController
     {
         $this->loginFilter($this->auth, [2, 3]);
 
-        $cliente = User::find($id);
-        $currUser = User::first(array('conditions' => 'username LIKE "'.$_SESSION['user'].'"'));
+        $cliente = User::find(["id" =>$id]);
+        $currUser = User::first(array('conditions' => 'username LIKE "'.Auth::getUsername().'"'));
         $dataAtual = $this->getDataAtual();
 
         $ultimaFatura = Fatura::find('last', array('conditions' => array('funcionario_id LIKE ? AND cliente_id LIKE ? AND estado LIKE "Em lançamento"', $currUser->id, $id)));
@@ -85,8 +86,9 @@ class FaturasController extends BaseAuthController
     {
         $this->loginFilter($this->auth, [2, 3]);
 
-        $fatura = Fatura::find($id);
-        $cliente = User::find($fatura->cliente_id);
+        $fatura = Fatura::find(["id" => $id]);
+        $cliente = User::find(["id" => $fatura->cliente_id]);
+
         $produtos = Produto::all(array('conditions' => 'stock > 0'));
 
         $this->view('faturas/search-produto.php', [
@@ -111,7 +113,7 @@ class FaturasController extends BaseAuthController
                 $linhaFatura->produto_id = $_POST["produtoId"];
                 $linhaFatura->save();
 
-                $produto = Produto::find($_POST["produtoId"]);
+                $produto = Produto::find(["id" => $_POST["produtoId"]]);
                 $produto->stock = $produto->stock - $_POST["quantidade"];
                 $produto->save();
 
@@ -123,7 +125,7 @@ class FaturasController extends BaseAuthController
                     $ivaTotal += $linha->quantidade * $linha->valoriva;
                 }
 
-                $fatura = Fatura::find($_POST["faturaId"]);
+                $fatura = Fatura::find(["id" => $_POST["faturaId"]]);
                 $fatura->data = $this->getDataAtual();
                 $fatura->valortotal = $valorTotal;
                 $fatura->ivatotal = $ivaTotal;
@@ -131,9 +133,9 @@ class FaturasController extends BaseAuthController
 
                 $this->redirect('Faturas', 'EmitirSegundaFase', $_POST["clienteId"]);
             } else {
-                $cliente = User::find($_POST["clienteId"]);
-                $fatura = Fatura::find($_POST["faturaId"]);
-                $produto = Produto::find($_POST["produtoId"]);
+                $cliente = User::find(["id" => $_POST["clienteId"]]);
+                $fatura = Fatura::find(["id" => $_POST["faturaId"]]);
+                $produto = Produto::find(["id" => $_POST["produtoId"]]);
                 $iva = $produto->iva->percentagem;
                 $valorIva = ($iva / 100) * $produto->preco;
 
@@ -153,9 +155,9 @@ class FaturasController extends BaseAuthController
             $clienteId = $_POST["clienteId"];
             $produtoId = $_POST["produtoId"];
 
-            $linhaFatura = Linhasfatura::find($id);
-            $produto = Produto::find($produtoId);
-            $fatura = Fatura::find($linhaFatura->fatura_id);
+            $linhaFatura = Linhasfatura::find(["id" => $id]);
+            $produto = Produto::find(["id" => $produtoId]);
+            $fatura = Fatura::find(["id" => $linhaFatura->fatura_id]);
 
             $produto->stock = $produto->stock + $linhaFatura->quantidade;
             $produto->save();
@@ -176,17 +178,17 @@ class FaturasController extends BaseAuthController
     {
         $this->loginFilter($this->auth, [2, 3]);
         if ($_SERVER["REQUEST_METHOD"] = "POST") {
-            $cliente = User::find($_POST["clienteId"]);
-            $fatura = Fatura::find($_POST["faturaId"]);
+            $cliente = User::find(["id" => $_POST["clienteId"]]);
+            $fatura = Fatura::find(["id" => $_POST["faturaId"]]);
 
             if ($fatura->cliente_id == $cliente->id){
                 $fatura->data = $this->getDataAtual();
                 $fatura->save();
 
                 $linhasFatura = Linhasfatura::all(array('conditions' => 'fatura_id LIKE '.$fatura->id));
-                $funcionario = User::find($fatura->funcionario_id);
-                $funcionarioPerfil = Funcionario::find($funcionario->id);
-                $empresa = Empresa::find($funcionarioPerfil->empresa_id);
+                $funcionario = User::find(["id" => $fatura->funcionario_id]);
+                $funcionarioPerfil = Funcionario::find(["user_id" => $funcionario->id]);
+                $empresa = Empresa::find(["id" => $funcionarioPerfil->empresa_id]);
 
                 $totalSemIva = $fatura->valortotal - $fatura->ivatotal;
 

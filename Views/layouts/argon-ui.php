@@ -184,7 +184,7 @@ $controller = $route[2];
                         </a>
 
                         <ul class="dropdown-menu  dropdown-menu-dark" aria-labelledby="dropdownMenuLink">
-                            <li><a class="dropdown-item"  data-bs-toggle="modal" data-bs-target="#exampleModal" >Alterar Password</a></li>
+                            <li><a class="dropdown-item"  data-bs-toggle="modal" data-bs-target="#modalAlterarPass" >Alterar Password</a></li>
                             <li><a class="dropdown-item" href="<?= Url::toRoute("Auth", "Logout") ?>">Logout</a></li>
                         </ul>
                     </div>
@@ -203,7 +203,7 @@ $controller = $route[2];
     </nav>
 
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="modalAlterarPass" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content bg-dark">
                 <div class="modal-header">
@@ -214,16 +214,17 @@ $controller = $route[2];
                     <form method="post" action="<?= Url::toRoute('Auth', 'AlterarPassword') ?>">
                         <div class="form-group">
                             <label for="password">Password:</label>
-                            <input type="password" name="password" id="password" class="form-control">
+                            <input type="password" name="password" id="modalPassword" class="form-control">
                         </div>
                         <div class="form-group">
                             <label for="password">Confirmar Password:</label>
-                            <input type="password" name="confirmarPassword" id="confirmarPassword" class="form-control">
+                            <input type="password" name="confirmarPassword" id="modalConfirmarPassword" class="form-control">
                         </div>
+                        <div id="alertaPass" style="display: none">Atenção: As passwords não são iguais!</div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <input type="submit" class="btn btn-primary" disabled value="Alterar Password">
+                    <input id="btnAlterar" type="submit" class="btn btn-primary" disabled value="Alterar Password">
                     </form>
                 </div>
             </div>
@@ -310,6 +311,9 @@ $controller = $route[2];
         </div>
     </div>
 </div>
+
+<!-- JS alterar password -->
+<script src="<?= Url::getBaseUrl() ?>/public/js/alterarpass.js"></script>
 <!--   Core JS Files   -->
 <script src="<?= Url::getBaseUrl() ?>/public/js/core/popper.min.js"></script>
 <script src="<?= Url::getBaseUrl() ?>/public/js/core/bootstrap.min.js"></script>

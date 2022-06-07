@@ -177,12 +177,17 @@ $controller = $route[2];
             </nav>
             <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                 <ul class=" ms-md-auto pe-md-3 d-flex align-items-center navbar-nav  justify-content-end">
-                    <li class="nav-item d-flex align-items-center">
-                        <a href="<?= Url::toRoute("Auth", "Logout") ?>" class="nav-link text-white font-weight-bold px-0">
+                    <div class="dropdown">
+                        <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fa fa-user me-sm-1"></i>
-                            <span class="d-sm-inline d-none">Logout (<?= $_SESSION["user"] ?>)</span>
+                            <?= $_SESSION["user"] ?>
                         </a>
-                    </li>
+
+                        <ul class="dropdown-menu  dropdown-menu-dark" aria-labelledby="dropdownMenuLink">
+                            <li><a class="dropdown-item"  data-bs-toggle="modal" data-bs-target="#exampleModal" >Alterar Password</a></li>
+                            <li><a class="dropdown-item" href="<?= Url::toRoute("Auth", "Logout") ?>">Logout</a></li>
+                        </ul>
+                    </div>
                     <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
                         <a href="javascript:;" class="nav-link text-white p-0" id="iconNavbarSidenav">
                             <div class="sidenav-toggler-inner">
@@ -196,6 +201,35 @@ $controller = $route[2];
             </div>
         </div>
     </nav>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content bg-dark">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Alterar Password</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body ">
+                    <form method="post" action="<?= Url::toRoute('Auth', 'AlterarPassword') ?>">
+                        <div class="form-group">
+                            <label for="password">Password:</label>
+                            <input type="password" name="password" id="password" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Confirmar Password:</label>
+                            <input type="password" name="confirmarPassword" id="confirmarPassword" class="form-control">
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <input type="submit" class="btn btn-primary" disabled value="Alterar Password">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- End Navbar -->
     <div class="container-fluid py-4">
         <?= $content ?>

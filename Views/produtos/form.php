@@ -1,7 +1,8 @@
 <?php
 
 
-/* @var $produto */
+/* @var $produto Produto */
+/* @var $ivas Iva[] */
 
 ?>
 

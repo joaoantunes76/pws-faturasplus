@@ -44,7 +44,7 @@ class ProdutosController extends BaseAuthController
     {
         $this->loginFilter($this->auth, [2, 3]);
 
-        $ivas = Iva::all();
+        $ivas = Iva::all(array('conditions' => 'vigor = 1'));
         if($_SERVER["REQUEST_METHOD"] == "POST"){
 
             $produto = new Produto();
@@ -71,7 +71,7 @@ class ProdutosController extends BaseAuthController
         $this->loginFilter($this->auth, [2, 3]);
 
         $produto = Produto::find(['id' => $id]);
-        $ivas = Iva::all();
+        $ivas = Iva::all(array('conditions' => 'vigor = 1'));
         if($_SERVER["REQUEST_METHOD"] == "POST"){
             $produto->referencia = $_POST["referencia"];
             $produto->descricao = $_POST["descricao"];

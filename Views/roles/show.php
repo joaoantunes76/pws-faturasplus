@@ -23,8 +23,8 @@
         </div>
         <div class="card-body p-3">
             <ul class="list-group">
-                <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">ID:</strong> <?= $role->id ?></li>
-                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Name:</strong> <?= $role->name ?></li>
+                <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="">ID:</strong> <?= $role->id ?></li>
+                <li class="list-group-item border-0 ps-0 text-sm"><strong class="">Name:</strong> <?= $role->name ?></li>
             </ul>
         </div>
     </div>

@@ -174,26 +174,26 @@ function sidebarType(a) {
   sidebar.classList.add(color);
 
 
-  // Remove text-white/text-dark classes
+  // Remove text-white/ classes
   if (color == 'bg-dark') {
     var textWhites = document.querySelectorAll('.sidenav .text-white');
     for (let i = 0; i < textWhites.length; i++) {
       textWhites[i].classList.remove('text-white');
-      textWhites[i].classList.add('text-dark');
+      textWhites[i].classList.add('');
     }
   } else {
-    var textDarks = document.querySelectorAll('.sidenav .text-dark');
+    var textDarks = document.querySelectorAll('.sidenav .');
     for (let i = 0; i < textDarks.length; i++) {
       textDarks[i].classList.add('text-white');
-      textDarks[i].classList.remove('text-dark');
+      textDarks[i].classList.remove('');
     }
   }
 
   if (color == 'bg-default' && bodyDark) {
-    var textDarks = document.querySelectorAll('.navbar-brand .text-dark');
+    var textDarks = document.querySelectorAll('.navbar-brand .');
     for (let i = 0; i < textDarks.length; i++) {
       textDarks[i].classList.add('text-white');
-      textDarks[i].classList.remove('text-dark');
+      textDarks[i].classList.remove('');
     }
   }
 
@@ -563,16 +563,16 @@ function darkMode(el) {
   const sidebar = document.querySelector('.sidenav');
   const sidebarWhite = document.querySelectorAll('.sidenav.bg-dark');
   const hr_card = document.querySelectorAll('div:not(.bg-gradient-dark) hr');
-  const text_btn = document.querySelectorAll('button:not(.btn) > .text-dark');
-  const text_span = document.querySelectorAll('span.text-dark, .breadcrumb .text-dark');
+  const text_btn = document.querySelectorAll('button:not(.btn) > .');
+  const text_span = document.querySelectorAll('span., .breadcrumb .');
   const text_span_white = document.querySelectorAll('span.text-white');
-  const text_strong = document.querySelectorAll('strong.text-dark');
+  const text_strong = document.querySelectorAll('strong.');
   const text_strong_white = document.querySelectorAll('strong.text-white');
-  const text_nav_link = document.querySelectorAll('a.nav-link.text-dark');
+  const text_nav_link = document.querySelectorAll('a.nav-link.');
   const secondary = document.querySelectorAll('.text-secondary');
   const bg_gray_100 = document.querySelectorAll('.bg-gray-100');
   const bg_gray_600 = document.querySelectorAll('.bg-gray-600');
-  const btn_text_dark = document.querySelectorAll('.btn.btn-link.text-dark, .btn .ni.text-dark');
+  const btn_text_dark = document.querySelectorAll('.btn.btn-link., .btn .ni.');
   const btn_text_white = document.querySelectorAll('.btn.btn-link.text-white, .btn .ni.text-white');
   const card_border = document.querySelectorAll('.card.border');
   const card_border_dark = document.querySelectorAll('.card.border.border-dark');
@@ -591,8 +591,8 @@ function darkMode(el) {
       navbarBrand.src = navbarBrandImgNew;
     }
     for (var i = 0; i < cardNavLinksIcons.length; i++) {
-      if (cardNavLinksIcons[i].classList.contains('text-dark')) {
-        cardNavLinksIcons[i].classList.remove('text-dark');
+      if (cardNavLinksIcons[i].classList.contains('')) {
+        cardNavLinksIcons[i].classList.remove('');
         cardNavLinksIcons[i].classList.add('text-white');
       }
     }
@@ -614,26 +614,26 @@ function darkMode(el) {
       }
     }
     for (var i = 0; i < text_btn.length; i++) {
-      if (text_btn[i].classList.contains('text-dark')) {
-        text_btn[i].classList.remove('text-dark');
+      if (text_btn[i].classList.contains('')) {
+        text_btn[i].classList.remove('');
         text_btn[i].classList.add('text-white');
       }
     }
     for (var i = 0; i < text_span.length; i++) {
-      if (text_span[i].classList.contains('text-dark')) {
-        text_span[i].classList.remove('text-dark');
+      if (text_span[i].classList.contains('')) {
+        text_span[i].classList.remove('');
         text_span[i].classList.add('text-white');
       }
     }
     for (var i = 0; i < text_strong.length; i++) {
-      if (text_strong[i].classList.contains('text-dark')) {
-        text_strong[i].classList.remove('text-dark');
+      if (text_strong[i].classList.contains('')) {
+        text_strong[i].classList.remove('');
         text_strong[i].classList.add('text-white');
       }
     }
     for (var i = 0; i < text_nav_link.length; i++) {
-      if (text_nav_link[i].classList.contains('text-dark')) {
-        text_nav_link[i].classList.remove('text-dark');
+      if (text_nav_link[i].classList.contains('')) {
+        text_nav_link[i].classList.remove('');
         text_nav_link[i].classList.add('text-white');
       }
     }
@@ -651,7 +651,7 @@ function darkMode(el) {
       }
     }
     for (var i = 0; i < btn_text_dark.length; i++) {
-      btn_text_dark[i].classList.remove('text-dark');
+      btn_text_dark[i].classList.remove('');
       btn_text_dark[i].classList.add('text-white');
     }
     for (var i = 0; i < sidebarWhite.length; i++) {
@@ -674,15 +674,15 @@ function darkMode(el) {
       navbarBrand.src = navbarBrandImgNew;
     }
     for (var i = 0; i < navLinks.length; i++) {
-      if (navLinks[i].classList.contains('text-dark')) {
+      if (navLinks[i].classList.contains('')) {
         navLinks[i].classList.add('text-white');
-        navLinks[i].classList.remove('text-dark');
+        navLinks[i].classList.remove('');
       }
     }
     for (var i = 0; i < cardNavLinksIcons.length; i++) {
       if (cardNavLinksIcons[i].classList.contains('text-white')) {
         cardNavLinksIcons[i].classList.remove('text-white');
-        cardNavLinksIcons[i].classList.add('text-dark');
+        cardNavLinksIcons[i].classList.add('');
       }
     }
     for (var i = 0; i < cardNavSpan.length; i++) {
@@ -705,26 +705,26 @@ function darkMode(el) {
     for (var i = 0; i < text_btn.length; i++) {
       if (text_btn[i].classList.contains('text-white')) {
         text_btn[i].classList.remove('text-white');
-        text_btn[i].classList.add('text-dark');
+        text_btn[i].classList.add('');
       }
     }
     for (var i = 0; i < text_span_white.length; i++) {
       if (text_span_white[i].classList.contains('text-white') && !text_span_white[i].closest('.sidenav') && !text_span_white[i].closest('.card.bg-gradient-dark')) {
         text_span_white[i].classList.remove('text-white');
-        text_span_white[i].classList.add('text-dark');
+        text_span_white[i].classList.add('');
       }
     }
     for (var i = 0; i < text_strong_white.length; i++) {
       if (text_strong_white[i].classList.contains('text-white')) {
         text_strong_white[i].classList.remove('text-white');
-        text_strong_white[i].classList.add('text-dark');
+        text_strong_white[i].classList.add('');
       }
     }
     for (var i = 0; i < secondary.length; i++) {
       if (secondary[i].classList.contains('text-white')) {
         secondary[i].classList.remove('text-white');
         secondary[i].classList.remove('opacity-8');
-        secondary[i].classList.add('text-dark');
+        secondary[i].classList.add('');
       }
     }
     for (var i = 0; i < bg_gray_600.length; i++) {
@@ -741,7 +741,7 @@ function darkMode(el) {
     for (var i = 0; i < btn_text_white.length; i++) {
       if (!btn_text_white[i].closest('.card.bg-gradient-dark')) {
         btn_text_white[i].classList.remove('text-white');
-        btn_text_white[i].classList.add('text-dark');
+        btn_text_white[i].classList.add('');
       }
     }
     for (var i = 0; i < card_border_dark.length; i++) {

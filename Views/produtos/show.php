@@ -24,12 +24,12 @@
         </div>
         <div class="card-body p-3">
             <ul class="list-group">
-                <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">ID:</strong> <?= $produto->id ?></li>
-                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Referencia:</strong> <?= $produto->referencia?></li>
-                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Descrição:</strong> <?= $produto->descricao ?></li>
-                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Preço:</strong> <?= $produto->preco ?>€</li>
-                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Stock:</strong> <?= $produto->stock ?></li>
-                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Iva:</strong> <?= $produto->iva->percentagem ?>%</li>
+                <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="">ID:</strong> <?= $produto->id ?></li>
+                <li class="list-group-item border-0 ps-0 text-sm"><strong class="">Referencia:</strong> <?= $produto->referencia?></li>
+                <li class="list-group-item border-0 ps-0 text-sm"><strong class="">Descrição:</strong> <?= $produto->descricao ?></li>
+                <li class="list-group-item border-0 ps-0 text-sm"><strong class="">Preço:</strong> <?= $produto->preco ?>€</li>
+                <li class="list-group-item border-0 ps-0 text-sm"><strong class="">Stock:</strong> <?= $produto->stock ?></li>
+                <li class="list-group-item border-0 ps-0 text-sm"><strong class="">Iva:</strong> <?= $produto->iva->percentagem ?>%</li>
             </ul>
         </div>
     </div>

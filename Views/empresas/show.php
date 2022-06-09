@@ -34,15 +34,15 @@
         </div>
         <div class="card-body p-3">
             <ul class="list-group">
-                <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">ID:</strong> <?= $empresa->id ?></li>
-                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Designacao Social:</strong> <?= $empresa->designacaosocial ?></li>
-                <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Email:</strong> <?= $empresa->email ?></li>
-                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Telefone:</strong> <?= $empresa->telefone ?></li>
-                <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">NIF:</strong> <?= $empresa->nif ?></li>
-                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Morada:</strong> <?= $empresa->morada ?></li>
-                <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Codigo Postal:</strong> <?= $empresa->codigopostal ?></li>
-                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Localidade:</strong> <?= $empresa->localidade ?></li>
-                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Capital Social:</strong> <?= $empresa->capitalsocial ?></li>
+                <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong>ID:</strong> <?= $empresa->id ?></li>
+                <li class="list-group-item border-0 ps-0 text-sm"><strong>Designacao Social:</strong> <?= $empresa->designacaosocial ?></li>
+                <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong>Email:</strong> <?= $empresa->email ?></li>
+                <li class="list-group-item border-0 ps-0 text-sm"><strong>Telefone:</strong> <?= $empresa->telefone ?></li>
+                <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong>NIF:</strong> <?= $empresa->nif ?></li>
+                <li class="list-group-item border-0 ps-0 text-sm"><strong>Morada:</strong> <?= $empresa->morada ?></li>
+                <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong>Codigo Postal:</strong> <?= $empresa->codigopostal ?></li>
+                <li class="list-group-item border-0 ps-0 text-sm"><strong>Localidade:</strong> <?= $empresa->localidade ?></li>
+                <li class="list-group-item border-0 ps-0 text-sm"><strong>Capital Social:</strong> <?= $empresa->capitalsocial ?></li>
             </ul>
         </div>
     </div>

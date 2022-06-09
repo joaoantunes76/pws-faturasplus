@@ -24,10 +24,10 @@
         </div>
         <div class="card-body p-3">
             <ul class="list-group">
-                <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">ID:</strong> <?= $iva->id ?></li>
-                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Percentagem:</strong> <?= $iva->percentagem ?>%</li>
-                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Descrição:</strong> <?= $iva->descricao ?></li>
-                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Vigor:</strong> <?= $iva->vigor ? "Sim" : "Não" ?></li>
+                <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="">ID:</strong> <?= $iva->id ?></li>
+                <li class="list-group-item border-0 ps-0 text-sm"><strong class="">Percentagem:</strong> <?= $iva->percentagem ?>%</li>
+                <li class="list-group-item border-0 ps-0 text-sm"><strong class="">Descrição:</strong> <?= $iva->descricao ?></li>
+                <li class="list-group-item border-0 ps-0 text-sm"><strong class="">Vigor:</strong> <?= $iva->vigor ? "Sim" : "Não" ?></li>
             </ul>
         </div>
     </div>

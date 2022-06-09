@@ -24,15 +24,15 @@
         </div>
         <div class="card-body p-3">
             <ul class="list-group">
-                <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">ID:</strong> <?= $user->id ?></li>
-                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Role:</strong> <?= $user->role->name ?></li>
-                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Name:</strong> <?= $user->username ?></li>
-                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Email:</strong> <?= $user->email ?></li>
-                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Telefone:</strong> <?= $user->telefone ?></li>
-                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Nif:</strong> <?= $user->nif ?></li>
-                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Morada:</strong> <?= $user->morada ?></li>
-                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Codigo Postal:</strong> <?= $user->codigopostal ?></li>
-                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Localidade:</strong> <?= $user->localidade ?></li>
+                <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="">ID:</strong> <?= $user->id ?></li>
+                <li class="list-group-item border-0 ps-0 text-sm"><strong class="">Role:</strong> <?= $user->role->name ?></li>
+                <li class="list-group-item border-0 ps-0 text-sm"><strong class="">Name:</strong> <?= $user->username ?></li>
+                <li class="list-group-item border-0 ps-0 text-sm"><strong class="">Email:</strong> <?= $user->email ?></li>
+                <li class="list-group-item border-0 ps-0 text-sm"><strong class="">Telefone:</strong> <?= $user->telefone ?></li>
+                <li class="list-group-item border-0 ps-0 text-sm"><strong class="">Nif:</strong> <?= $user->nif ?></li>
+                <li class="list-group-item border-0 ps-0 text-sm"><strong class="">Morada:</strong> <?= $user->morada ?></li>
+                <li class="list-group-item border-0 ps-0 text-sm"><strong class="">Codigo Postal:</strong> <?= $user->codigopostal ?></li>
+                <li class="list-group-item border-0 ps-0 text-sm"><strong class="">Localidade:</strong> <?= $user->localidade ?></li>
             </ul>
         </div>
     </div>

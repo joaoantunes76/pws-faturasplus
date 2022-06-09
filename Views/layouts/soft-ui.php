@@ -211,7 +211,7 @@
     </div>
 </main>
 <div class="fixed-plugin">
-    <a class="fixed-plugin-button text-dark position-fixed px-3 py-2">
+    <a class="fixed-plugin-button  position-fixed px-3 py-2">
         <i class="fa fa-cog py-2"> </i>
     </a>
     <div class="card shadow-lg ">
@@ -221,7 +221,7 @@
                 <p>See our dashboard options.</p>
             </div>
             <div class="float-end mt-4">
-                <button class="btn btn-link text-dark p-0 fixed-plugin-close-button">
+                <button class="btn btn-link  p-0 fixed-plugin-close-button">
                     <i class="fa fa-close"></i>
                 </button>
             </div>

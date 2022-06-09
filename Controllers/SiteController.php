@@ -15,6 +15,9 @@ class SiteController extends BaseAuthController
     public function indexAction()
     {
         $this->loginFilter($this->auth, [1, 2, 3]);
+        if($this->auth::getUserRole() == 1){
+            $this->redirect("Faturas", "Index");
+        }
         $this->view('site/index.php');
 
     }

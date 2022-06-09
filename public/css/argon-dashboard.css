@@ -10218,7 +10218,7 @@ fieldset:disabled .btn {
   color: #e9ecef !important;
 }
 
-.text-dark {
+. {
   color: #344767 !important;
 }
 
@@ -21612,11 +21612,11 @@ svg.text-success .color-background {
   fill: #2dcecc;
 }
 
-svg.text-dark .color-foreground {
+svg. .color-foreground {
   fill: #212229;
 }
 
-svg.text-dark .color-background {
+svg. .color-background {
   fill: #212529;
 }
 
@@ -22000,8 +22000,8 @@ hr.horizontal.gray-light {
   border-radius: 1rem;
 }
 
-.navbar.navbar-dark .navbar-collapse.show .dropdown-header.text-dark,
-.navbar.navbar-dark .navbar-collapse.collapsing .dropdown-header.text-dark {
+.navbar.navbar-dark .navbar-collapse.show .dropdown-header.,
+.navbar.navbar-dark .navbar-collapse.collapsing .dropdown-header. {
   color: #fff !important;
 }
 
@@ -24686,7 +24686,7 @@ p {
   background-image: linear-gradient(310deg, #f5365c, #f56036);
 }
 
-.text-gradient.text-dark {
+.text-gradient. {
   background-image: linear-gradient(310deg, #212229, #212529);
 }
 

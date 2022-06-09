@@ -37,6 +37,15 @@ class AuthController extends BaseController
         }
     }
 
+    public function alterarPasswordAction(){
+        $newPassword = $_POST["password"];
+        $hashedPassword = hash("sha256", $newPassword);
+        $user = User::find(["username" => $this->auth::getUsername()]);
+        $user->password = $hashedPassword;
+        $user->save();
+        $this->redirect('Site', 'Index');
+    }
+
     public function logoutAction(){
         $this->auth->Logout();
 

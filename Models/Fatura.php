@@ -18,6 +18,17 @@ class Fatura extends \ActiveRecord\Model
         array('estado', 'message' => 'It must be provided')
     );
 
+    public function getCliente(){
+        $cliente = User::find(["id" => $this->cliente_id]);
+        return $cliente;
+    }
+
+    public function getFuncionario(){
+        $funcionario = User::find(["id" => $this->funcionario_id]);
+        return $funcionario;
+    }
+
+    //Converte os valores para Euros
     public function paraEuro($val){
         return number_format($val, 2, '.', '');
     }

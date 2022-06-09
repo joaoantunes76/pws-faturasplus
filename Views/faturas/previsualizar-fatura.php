@@ -17,6 +17,7 @@
                 </div>
                 <div class="col-3">
                     <form method="post" action="<?= Url::toRoute('Faturas', 'EmitirFatura') ?>">
+                        <input type="hidden" name="faturaId" value="<?= $fatura->id ?>">
                         <input type="submit" class="btn btn-success" value="Emitir">
                     </form>
                 </div>

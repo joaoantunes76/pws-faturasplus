@@ -17,9 +17,10 @@
                         <table class="table align-items-center mb-0">
                             <thead>
                             <tr>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-5">Data</th>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Valor Total</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-5">Cliente</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Data</th>
                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Iva Total</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Valor Total</th>
                                 <th class="text-secondary opacity-7"></th>
                             </tr>
                             </thead>
@@ -28,9 +29,10 @@
                             foreach($faturas as $fatura){
                                 ?>
                                     <tr>
-                                        <td class="px-5"><?= $fatura->data ?></td>
-                                        <td><?= $fatura->valorTotal ?></td>
-                                        <td><?= $fatura->ivaTotal ?></td>
+                                        <td class="px-5"><?= $fatura->getCliente()->username ?></td>
+                                        <td><?= date('d/m/Y', strtotime($fatura->data)) ?></td>
+                                        <td><?= $fatura->paraEuro($fatura->ivatotal) ?> €</td>
+                                        <td><?= $fatura->paraEuro($fatura->valortotal) ?> €</td>
                                         <td></td>
                                     </tr>
                                 <?php

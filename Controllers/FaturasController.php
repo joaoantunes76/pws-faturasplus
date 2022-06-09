@@ -150,6 +150,7 @@ class FaturasController extends BaseAuthController
         }
     }
 
+    //Apaga uma Linha de Fatura
     public function deletelinhafaturaAction($id)
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -175,6 +176,7 @@ class FaturasController extends BaseAuthController
         }
     }
 
+    //Pre-visualizar fatura
     public function previsualizarfaturaAction()
     {
         $this->loginFilter($this->auth, [2, 3]);
@@ -206,6 +208,20 @@ class FaturasController extends BaseAuthController
     }
 
     public function emitirfaturaAction(){
+
+        $this->loginFilter($this->auth, [2, 3]);
+        if ($_SERVER["REQUEST_METHOD"] = "POST") {
+            $faturaId = $_POST["faturaId"];
+
+            $fatura = Fatura::find(["id" => $faturaId]);
+            $fatura->data = $this->getDataAtual();
+            $fatura->estado = 'Emitida';
+            $fatura->save();
+
+            $this->redirect('Faturas', 'index');
+        } else {
+            $this->redirect('Faturas', 'index');
+        }
 
     }
 

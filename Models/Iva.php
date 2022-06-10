@@ -1,5 +1,14 @@
 <?php
 
+/**
+ *
+ * @property int id;
+ * @property int percentagem;
+ * @property string descricao;
+ * @property int vigor;
+ *
+ */
+
 class Iva extends ActiveRecord\Model
 {
     static $has_many = array(

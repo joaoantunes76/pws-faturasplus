@@ -1,5 +1,16 @@
 <?php
 
+/**
+ *
+ * @property int id;
+ * @property string referencia;
+ * @property string descricao;
+ * @property double preco;
+ * @property int stock;
+ * @property int iva_id;
+ *
+ */
+
 class Produto extends ActiveRecord\Model
 {
     static $belongs_to = array(

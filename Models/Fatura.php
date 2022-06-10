@@ -1,5 +1,17 @@
 <?php
 
+/**
+ *
+ * @property int id;
+ * @property DateTime data;
+ * @property double valortotal;
+ * @property double ivatotal;
+ * @property string estado;
+ * @property int cliente_id;
+ * @property int funcionario_id;
+ *
+ */
+
 class Fatura extends \ActiveRecord\Model
 {
     static $belongs_to = array(

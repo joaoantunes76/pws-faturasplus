@@ -41,10 +41,10 @@
                             foreach($linhasFatura as $linhaFatura){
                                 ?>
                                 <tr>
-                                    <td class="px-5"><?= $linhaFatura->produto->referencia ?></td>
+                                    <td class="px-5"><?= $linhaFatura->produto->referencia.' | '.$linhaFatura->produto->descricao ?></td>
                                     <td><?= $linhaFatura->quantidade ?></td>
-                                    <td><?= $linhaFatura->valorunitario ?> €</td>
-                                    <td><?= $linhaFatura->valoriva ?> €</td>
+                                    <td><?= $fatura->paraEuro($linhaFatura->valorunitario) ?> €</td>
+                                    <td><?= $fatura->paraEuro($linhaFatura->valoriva) ?> €</td>
                                     <td class="align-middle text-end">
                                         <form method="post" action="<?= Url::toRoute('Faturas', 'DeleteLinhaFatura', $linhaFatura->id) ?>" onsubmit="return confirm('Tem a certeza que quer Remover esta Linha de Fatura?');">
                                             <input type="hidden" name="clienteId" value="<?= $cliente->id ?>">

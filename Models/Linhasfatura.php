@@ -1,5 +1,16 @@
 <?php
 
+/**
+ *
+ * @property int id;
+ * @property int quantidade;
+ * @property double valorunitario;
+ * @property double valoriva;
+ * @property int fatura_id;
+ * @property int produto_id;
+ *
+ */
+
 class Linhasfatura extends ActiveRecord\Model
 {
     static $belongs_to = array(

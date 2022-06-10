@@ -37,7 +37,7 @@
                                     <td class="px-5"><?= $produto->id ?></td>
                                     <td><?= $produto->referencia ?></td>
                                     <td><?= $produto->descricao ?></td>
-                                    <td><?= $produto->preco ?>€</td>
+                                    <td><?= number_format($produto->preco, 2, '.', '') ?>€</td>
                                     <td><?= $produto->stock ?></td>
                                     <td><?= $produto->iva->percentagem ?>%</td>
                                     <td class="align-middle text-end">

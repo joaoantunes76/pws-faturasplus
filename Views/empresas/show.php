@@ -42,7 +42,7 @@
                 <li class="list-group-item border-0 ps-0 text-sm"><strong>Morada:</strong> <?= $empresa->morada ?></li>
                 <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong>Codigo Postal:</strong> <?= $empresa->codigopostal ?></li>
                 <li class="list-group-item border-0 ps-0 text-sm"><strong>Localidade:</strong> <?= $empresa->localidade ?></li>
-                <li class="list-group-item border-0 ps-0 text-sm"><strong>Capital Social:</strong> <?= $empresa->capitalsocial ?></li>
+                <li class="list-group-item border-0 ps-0 text-sm"><strong>Capital Social:</strong> <?= $empresa->capitalsocial ?> €</li>
             </ul>
         </div>
     </div>

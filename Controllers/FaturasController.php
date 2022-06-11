@@ -20,6 +20,7 @@ class FaturasController extends BaseAuthController
         return $dataAtual;
     }
 
+    //Lista de faturas para o cliente
     public function indexAction()
     {
         $this->loginFilter($this->auth, [1, 2, 3]);
@@ -27,7 +28,8 @@ class FaturasController extends BaseAuthController
         if (Auth::getUserRole() == 1){
             $currUser = User::first(array('conditions' => 'username LIKE "'.$_SESSION['user'].'"'));
 
-            $faturas = Fatura::all(array('conditions' => array('cliente_id LIKE ? AND estado LIKE ?', $currUser->id, '"Emitida"')));
+            $faturas = Fatura::all(array('conditions' => array('cliente_id = ? AND estado LIKE "Emitida"', $currUser->id)));
+
             $this->view('faturas/index.php', [
                 'faturas' => $faturas
             ]);
@@ -39,6 +41,28 @@ class FaturasController extends BaseAuthController
             ]);
         }
     }
+
+    //vista da fatura individual para o cliente
+    public function faturaindividualAction($faturaId)
+    {
+        $fatura = Fatura::find(["id" => $faturaId]);
+        $cliente = User::find(["id" => $fatura->cliente_id]);
+        $funcionario = User::find(["id" => $fatura->funcionario_id]);
+        $empresa = Empresa::find(["id" => $fatura->funcionario->empresa->id]);
+        $linhasFatura = Linhasfatura::all(array('conditions' => 'fatura_id = '.$fatura->id));
+        $totalSemIva = $fatura->valortotal - $fatura->ivatotal;
+
+        $this->view('faturas/fatura-individual.php', [
+            'fatura' => $fatura,
+            'cliente' => $cliente,
+            'funcionario' => $funcionario,
+            'empresa' => $empresa,
+            'linhasFatura' => $linhasFatura,
+            'totalSemIva' => $totalSemIva,
+        ],
+        'template-faturaindividual');
+    }
+
 
     //Mostra a vista de clientes para o funcionário escolher
     public function emitirprimeirafaseAction()
@@ -57,7 +81,7 @@ class FaturasController extends BaseAuthController
     {
         $this->loginFilter($this->auth, [2, 3]);
 
-        $cliente = User::find(["id" =>$id]);
+        $cliente = User::find(["id" => $id]);
         $currUser = User::first(array('conditions' => 'username LIKE "'.Auth::getUsername().'"'));
         $dataAtual = $this->getDataAtual();
 

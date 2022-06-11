@@ -29,7 +29,7 @@ $controller = $route[2];
     <link rel="apple-touch-icon" sizes="76x76" href="<?= Url::getBaseUrl() ?>/public/img/apple-icon.png">
     <link rel="icon" type="image/png" href="<?= Url::getBaseUrl() ?>/public/img/favicon.png">
     <title>
-        Argon Dashboard 2 by Creative Tim
+        Faturas+
     </title>
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -48,10 +48,10 @@ $controller = $route[2];
 <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 " id="sidenav-main">
     <div class="sidenav-header">
         <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
-        <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/argon-dashboard/pages/dashboard.html " target="_blank">
+        <div class="navbar-brand m-0">
             <img src="<?= Url::getBaseUrl() ?>/public/img/logo-ct.png" class="navbar-brand-img h-100" alt="main_logo">
-            <span class="ms-1 font-weight-bold"><?= NOME_APP ?></span>
-        </a>
+            <span class="ms-1 font-weight-bold text-white"><?= NOME_APP ?></span>
+        </div>
     </div>
     <hr class="horizontal light mt-0">
     <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
@@ -182,9 +182,15 @@ $controller = $route[2];
                             <i class="fa fa-user me-sm-1"></i>
                             <?= $_SESSION["user"] ?>
                         </a>
-
                         <ul class="dropdown-menu  dropdown-menu-dark" aria-labelledby="dropdownMenuLink">
-                            <li><a class="dropdown-item"  data-bs-toggle="modal" data-bs-target="#modalAlterarPass" >Alterar Password</a></li>
+                            <?php
+                            $acceptedRoles = array(2,3);
+                            if(in_array(Auth::getUserRole(), $acceptedRoles)){
+                            ?>
+                                <li><a class="dropdown-item"  data-bs-toggle="modal" data-bs-target="#modalAlterarPass" >Alterar Password</a></li>
+                            <?php
+                            }
+                            ?>
                             <li><a class="dropdown-item" href="<?= Url::toRoute("Auth", "Logout") ?>">Logout</a></li>
                         </ul>
                     </div>

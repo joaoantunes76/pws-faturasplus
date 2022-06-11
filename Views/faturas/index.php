@@ -15,9 +15,12 @@
                         <table class="table align-items-center mb-0">
                             <thead>
                             <tr>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-5">Data</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-5">Nº Fatura</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Empresa</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Data</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Iva</th>
                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Valor Total</th>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Iva Total</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"></th>
                                 <th class="text-secondary opacity-7"></th>
                             </tr>
                             </thead>
@@ -26,9 +29,14 @@
                             foreach($faturas as $fatura){
                                 ?>
                                 <tr>
-                                    <td class="px-5"><?= $fatura->data ?></td>
-                                    <td><?= $fatura->valorTotal ?></td>
-                                    <td><?= $fatura->ivaTotal ?></td>
+                                    <td class="px-5">#<?= $fatura->id ?></td>
+                                    <td><?= $fatura->funcionario->empresa->designacaosocial ?></td>
+                                    <td><?= date('d/m/Y', strtotime($fatura->data)) ?></td>
+                                    <td><?= $fatura->paraEuro($fatura->ivatotal) ?> €</td>
+                                    <td><?= $fatura->paraEuro($fatura->valortotal) ?> €</td>
+                                    <td>
+                                        <a href="<?= Url::toRoute('Faturas', 'FaturaIndividual', $fatura->id) ?>" target="_blank" class="btn btn-link text-info text-gradient px-3 mb-0"><i class="fa fa-eye"></i> Visualizar</a>
+                                    </td>
                                     <td></td>
                                 </tr>
                             <?php

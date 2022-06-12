@@ -18,6 +18,9 @@
         </div>
         <div class="card-body p-3">
             <form class="form" method="post">
+                <?php
+                    if(Auth::getUserRole() == 3){
+                ?>
                 <div class="form-group">
                     <label for="role_id">Role: </label>
                     <br>
@@ -34,6 +37,9 @@
                     </select>
                     <?php if(isset($user->errors)){ echo $user->errors->on('role_id'); }?>
                 </div>
+                <?php
+                    }
+                ?>
                 <div class="form-group">
                     <label for="username">Username: </label>
                     <br>

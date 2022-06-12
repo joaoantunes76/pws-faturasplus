@@ -1,5 +1,7 @@
 <?php
 
+
+
 class EmpresasController extends BaseAuthController
 {
     private Auth $auth;

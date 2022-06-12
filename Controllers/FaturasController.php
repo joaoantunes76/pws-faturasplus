@@ -82,7 +82,21 @@ class FaturasController extends BaseAuthController
         $this->loginFilter($this->auth, [2, 3]);
 
         $cliente = User::find(["id" => $id]);
-        $currUser = User::first(array('conditions' => 'username LIKE "'.Auth::getUsername().'"'));
+
+        if($this->auth::getUserRole() == 3){
+            session_start();
+            if($_SESSION["funcionario_escolhido"] == null){
+                $this->redirect('Faturas', 'escolher_empresa', $id);
+            }
+            else{
+                $currUser = User::find(['id' => $_SESSION["funcionario_escolhido"]]);
+                $_SESSION["funcionario_escolhido"] = null;
+            }
+        }
+        else{
+            $currUser = User::first(array('conditions' => 'username LIKE "'.Auth::getUsername().'"'));
+        }
+
         $dataAtual = $this->getDataAtual();
 
         $ultimaFatura = Fatura::find('last', array('conditions' => array('funcionario_id LIKE ? AND cliente_id LIKE ? AND estado LIKE "Em lançamento"', $currUser->id, $id)));
@@ -104,6 +118,51 @@ class FaturasController extends BaseAuthController
             'fatura' => $ultimaFatura,
             'linhasFatura' => $linhasFatura
         ]);
+    }
+
+    public function escolher_empresaAction($id){
+        $this->loginFilter($this->auth, [3]);
+
+        if($_SERVER["REQUEST_METHOD"] == "POST"){
+            $empresa = Empresa::find(['id' => intval($_POST["empresa_id"])]);
+            foreach($empresa->funcionarios as $funcionario){
+                $user = User::find(["id" => $funcionario->user_id]);
+                if($user->email == $empresa->email){
+                    session_start();
+                    $_SESSION["funcionario_escolhido"] = $funcionario->user_id;
+                    $this->redirect('Faturas', 'emitirsegundafase', $id);
+                }
+            }
+
+            $user = new User;
+            $user->username = $empresa->designacaosocial;
+            $user->password = hash('sha256', $empresa->nif."123");
+            $user->role_id = 2;
+            $user->email = $empresa->email;
+            $user->telefone = $empresa->telefone;
+            $user->nif = $empresa->nif;
+            $user->morada = $empresa->morada;
+            $user->codigopostal = $empresa->codigopostal;
+            $user->localidade = $empresa->localidade;
+
+
+            if($user->save()) {
+                $funcionario = new Funcionario();
+                $funcionario->user_id = $user->id;
+                $funcionario->empresa_id = $empresa->id;
+                $funcionario->save();
+            }
+
+            session_start();
+            $_SESSION["funcionario_escolhido"] = $funcionario->user_id;
+            $this->redirect('Faturas', 'emitirsegundafase', $id);
+        }
+        else {
+            $empresas = Empresa::all();
+            $this->view('faturas/escolher_empresa.php', [
+                'empresas' => $empresas
+            ]);
+        }
     }
 
     //Mostra uma vista para o funcionário escolher o produto

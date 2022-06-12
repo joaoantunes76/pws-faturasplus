@@ -1,5 +1,19 @@
 <?php
 
+/**
+ *
+ * @property int id;
+ * @property string designacaosocial;
+ * @property string email;
+ * @property string telefone;
+ * @property string nif;
+ * @property string morada;
+ * @property string codigopostal;
+ * @property string localidade;
+ * @property string capitalsocial;
+ *
+ */
+
 class Empresa extends \ActiveRecord\Model
 {
 

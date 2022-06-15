@@ -1,26 +1,9 @@
 <?php
 
 /* @var $ivas Iva[] */
-/* @var $error String */
-
 
 ?>
 
-<?php
-
-    if($_SESSION["error"] != null){
-    ?>
-        <div class="alert alert-danger alert-dismissible fade show text-white" role="alert">
-            <span class="alert-icon"><i class="ni ni-like-2"></i></span>
-            <span class="alert-text"><strong>Erro!</strong> <?= $_SESSION["error"] ?></span>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-    <?php
-        unset($_SESSION["error"]);
-    }
-?>
 
 <a href="<?= Url::toRoute('Ivas', 'Create') ?>" class="btn btn-success" role="button">Create</a>
 <br>

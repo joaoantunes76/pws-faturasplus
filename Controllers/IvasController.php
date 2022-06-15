@@ -97,6 +97,7 @@ class IvasController extends BaseAuthController
 
     /**
      * @throws \ActiveRecord\RecordNotFound
+     * @throws \ActiveRecord\ActiveRecordException
      */
     public function deleteAction($id)
     {
@@ -107,7 +108,17 @@ class IvasController extends BaseAuthController
             echo '<h1>Error:</h1><h3>No Iva found by that id</h3>';
         }
         else{
-            $iva->delete();
+            $produto = Produto::find(['iva_id' => $iva->id]);
+            //var_dump($produto);
+            if($produto == null){
+                $iva->delete();
+            }
+            else {
+                $error = 'Existem produtos associados a este IVA.';
+                session_start();
+                $_SESSION["error"] = $error;
+            }
+
             $this->redirect("Ivas", "Index");
         }
     }

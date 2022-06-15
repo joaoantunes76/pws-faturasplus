@@ -12,16 +12,20 @@ if($route[2] == null){
 }
 $class = strtolower($route[2]).'Controller';
 
+
+$action = strtok($route[3], '?');
+$id = strtok($route[4], '?');
+
 if(class_exists($class)){
     $controller = new $class($auth);
     if (isset($route[2])) {
         if($route[3] == ""){
             $route[3] = "index";
         }
-        $function = strtolower($route[3]).'Action';
+        $function = strtolower($action).'Action';
 
         if (method_exists($controller, $function)){
-            $controller->$function($route[4]);
+            $controller->$function($id);
         }
         else{
             include_once 'Views/PageNotFound.php';

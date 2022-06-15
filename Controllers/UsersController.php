@@ -17,11 +17,22 @@ class UsersController extends BaseAuthController
     {
         $this->loginFilter($this->auth, [2, 3]);
 
+        if(isset($_GET["limpar"])){
+            $this->redirect("Users", "Index");
+        }
+
         if($this->auth::getUserRole() == 2) {
             $users = User::find("all",['role_id' => 1]);
         }
         else {
-            $users = User::all();
+
+            if(isset($_GET["username"])){
+                $users = User::find("all",  array('conditions' => "username LIKE '%".addslashes($_GET["username"])."%'"));
+            }
+            else{
+                $users = User::all();
+            }
+
         }
         $this->view('users/index.php', [
             'users' => $users

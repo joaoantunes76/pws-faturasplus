@@ -8,6 +8,21 @@
 <br>
 <section class="mt-3">
 
+    <form>
+        <div class="row">
+            <div class="col">
+                <label for="username">username</label>
+                <input type="text" name="username" id="username" class="form-control" value="<?= $_GET["username"] ?>"/>
+            </div>
+            <div class="col pt-1">
+                <br>
+                <input type="submit" class="btn btn-primary">
+                <input type="submit" class="btn btn-primary" name="limpar" value="Limpar">
+            </div>
+        </div>
+    </form>
+    <br>
+
     <div class="row">
         <div class="col-12">
             <div class="card mb-4">

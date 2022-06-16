@@ -19,8 +19,8 @@ $id = strtok($route[4], '?');
 if(class_exists($class)){
     $controller = new $class($auth);
     if (isset($route[2])) {
-        if($route[3] == ""){
-            $route[3] = "index";
+        if($action == ""){
+            $action = "index";
         }
         $function = strtolower($action).'Action';
 

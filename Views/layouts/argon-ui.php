@@ -58,7 +58,7 @@ $controller = $route[2];
         <ul class="navbar-nav">
             <li class="nav-item">
                 <?php
-                    $acceptedRoles = array(2,3);
+                    $acceptedRoles = array(3);
                     if(in_array(Auth::getUserRole(), $acceptedRoles)){
                 ?>
                 <a class="nav-link <?= strtolower($controller) === "site" ? "active" : ""  ?>" href="<?= Url::toRoute("Site", "Index") ?>">

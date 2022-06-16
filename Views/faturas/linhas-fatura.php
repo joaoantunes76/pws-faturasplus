@@ -65,27 +65,5 @@
         </div>
     </div>
 
-    <!-- Modal Confirmar Remover Linha Fatura -->
-    <div class="modal fade" id="modalRemover" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    Tem a certeza que deseja remover esta linha de fatura?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Não</button>
-
-                    <input type="submit" class="btn bg-gradient-primary">Sim</input>
-                </div>
-            </div>
-        </div>
-    </div>
-
 
 </section>

@@ -67,10 +67,27 @@ class FaturasController extends BaseAuthController
     //Mostra a vista de clientes para o funcionário escolher
     public function emitirprimeirafaseAction()
     {
-        //TODO: SEARCH BAR GET REQUEST
-        //TODO: Session para o admin escolher a empresa numa nova vista
         $this->loginFilter($this->auth, [2, 3]);
-        $clientes = User::all(array('conditions' => 'role_id LIKE 1'));
+
+        if (isset($_GET["limpar"])){
+            $this->redirect("Faturas", "EmitirPrimeiraFase");
+        }
+        if (isset($_GET["pesquisa"])){
+            $pesquisa = addslashes($_GET["pesquisa"]);
+            $clientes = User::all(array('conditions' => "username LIKE '%".$pesquisa."%' OR email LIKE '%".$pesquisa."%' OR telefone LIKE '%".$pesquisa."%' OR nif LIKE '%".$pesquisa."%' OR morada LIKE '%".$pesquisa."%' OR codigoPostal LIKE '%".$pesquisa."%' OR localidade LIKE '%".$pesquisa."%'"));
+
+            $clientesFiltrados = array();
+            foreach ($clientes as $cliente){
+                if($cliente->role_id == 1) {
+                    array_push($clientesFiltrados, $cliente);
+                }
+            }
+            $clientes = $clientesFiltrados;
+
+
+        } else {
+            $clientes = User::all(array('conditions' => 'role_id LIKE 1'));
+        }
         $this->view('faturas/search-cliente.php', [
             'clientes' => $clientes
         ]);
@@ -120,6 +137,7 @@ class FaturasController extends BaseAuthController
         ]);
     }
 
+    // O admin escolhe a empresa para emitir a fatura
     public function escolher_empresaAction($id){
         $this->loginFilter($this->auth, [3]);
 
@@ -158,7 +176,18 @@ class FaturasController extends BaseAuthController
             $this->redirect('Faturas', 'emitirsegundafase', $id);
         }
         else {
-            $empresas = Empresa::all();
+
+            if(isset($_GET["limpar"])){
+                $this->redirect('Faturas', 'escolher_empresa', $id);
+            }
+            if(isset($_GET["pesquisa"])){
+                $pesquisa = addslashes($_GET["pesquisa"]);
+                $empresas = Empresa::find("all",  array('conditions' => "designacaoSocial LIKE '%".$pesquisa."%' OR email LIKE '%".$pesquisa."%' OR telefone LIKE '%".$pesquisa."%' OR nif LIKE '%".$pesquisa."%' OR morada LIKE '%".$pesquisa."%' OR codigoPostal LIKE '%".$pesquisa."%' OR localidade LIKE '%".$pesquisa."%' OR capitalSocial LIKE '%".$pesquisa."%'"));
+            }
+            else{
+                $empresas = Empresa::all();
+            }
+
             $this->view('faturas/escolher_empresa.php', [
                 'empresas' => $empresas
             ]);
@@ -173,7 +202,24 @@ class FaturasController extends BaseAuthController
         $fatura = Fatura::find(["id" => $id]);
         $cliente = User::find(["id" => $fatura->cliente_id]);
 
-        $produtos = Produto::all(array('conditions' => 'stock > 0'));
+        if(isset($_GET["limpar"])){
+            $this->redirect('Faturas', 'EmitirTerceiraFase', $id);
+        }
+        if(isset($_GET["pesquisa"])){
+            $pesquisa = addslashes($_GET["pesquisa"]);
+            $produtos = Produto::find("all",  array('conditions' => "referencia LIKE '%".$pesquisa."%' OR descricao LIKE '%".$pesquisa."%' OR preco LIKE '%".$pesquisa."%'"));
+
+            $produtosFiltrados = array();
+            foreach ($produtos as $produto){
+                if($produto->stock > 1) {
+                    array_push($produtosFiltrados, $produto);
+                }
+            }
+            $produtos = $produtosFiltrados;
+        }
+        else{
+            $produtos = Produto::all(array('conditions' => 'stock > 0'));
+        }
 
         $this->view('faturas/search-produto.php', [
             'cliente' => $cliente,
@@ -290,6 +336,7 @@ class FaturasController extends BaseAuthController
         }
     }
 
+    // Emite definitivamente a fatura
     public function emitirfaturaAction(){
 
         $this->loginFilter($this->auth, [2, 3]);

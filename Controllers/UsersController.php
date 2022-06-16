@@ -26,8 +26,9 @@ class UsersController extends BaseAuthController
         }
         else {
 
-            if(isset($_GET["username"])){
-                $users = User::find("all",  array('conditions' => "username LIKE '%".addslashes($_GET["username"])."%'"));
+            if(isset($_GET["pesquisa"])){
+                $pesquisa = addslashes($_GET["pesquisa"]);
+                $users = User::find("all",  array('conditions' => "username LIKE '%".$pesquisa."%' OR email LIKE '%".$pesquisa."%' OR telefone LIKE '%".$pesquisa."%' OR nif LIKE '%".$pesquisa."%' OR morada LIKE '%".$pesquisa."%' OR codigoPostal LIKE '%".$pesquisa."%' OR localidade LIKE '%".$pesquisa."%'"));
             }
             else{
                 $users = User::all();

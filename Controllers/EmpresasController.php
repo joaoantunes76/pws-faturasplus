@@ -113,7 +113,7 @@ class EmpresasController extends BaseAuthController
     {
         $this->loginFilter($this->auth, [2, 3]);
 
-        $empresa = Empresas::find(['id' => $id]);
+        $empresa = Empresa::find(['id' => $id]);
         if(is_null($empresa)){
             echo '<h1>Error:</h1><h3>No book found by that id</h3>';
         }

@@ -12,6 +12,19 @@
                     <h6>Selecione um Produto para uma nova Linha de Fatura</h6>
                 </div>
                 <div class="card-body px-0 pt-0 pb-2">
+                    <form>
+                        <div class="row" style="margin-left: 1%">
+                            <div class="col">
+                                <label for="pesquisa">Pesquisar</label>
+                                <input type="text" name="pesquisa" id="pesquisa" class="form-control" value="<?= $_GET["pesquisa"] ?>"/>
+                            </div>
+                            <div class="col pt-1">
+                                <br>
+                                <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                                <input type="submit" class="btn btn-primary" name="limpar" value="Limpar">
+                            </div>
+                        </div>
+                    </form>
                     <div class="table-responsive p-0">
                         <table class="table align-items-center mb-0">
                             <thead>

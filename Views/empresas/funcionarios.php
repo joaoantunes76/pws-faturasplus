@@ -5,7 +5,7 @@
 $route = explode( '/' , $_SERVER['REQUEST_URI']);
 ?>
 
-<a href="<?= Url::toRoute('Empresas', 'CreateFuncionario', $route[4])?>" class="btn btn-success" role="button">Create</a>
+<a href="<?= Url::toRoute('Empresas', 'CreateFuncionario', $route[4])?>" class="btn btn-success" role="button">Criar Funcionário</a>
 <br>
 <section class="mt-3">
     <div class="row">
@@ -50,17 +50,17 @@ $route = explode( '/' , $_SERVER['REQUEST_URI']);
                                         <a href="<?= Url::toRoute('Users', 'Show', $funcionario->user->id) ?>"
                                            class="btn btn-link text-primary text-gradient px-3 mb-0" role="button">
                                             <i class="fas fa-eye me-2" aria-hidden="true"></i>
-                                            Show
+                                            Visualizar
                                         </a>
                                         <a href="<?= Url::toRoute('Users', 'Update', $funcionario->user->id) ?>"
                                            class="btn btn-link text-warning text-gradient px-3 mb-0" role="button">
                                             <i class="fas fa-pencil-alt me-2" aria-hidden="true"></i>
-                                            Edit
+                                            Editar
                                         </a>
                                         <a href="<?= Url::toRoute('Users', 'Delete', $funcionario->user->id) ?>"
                                            class="btn btn-link text-danger text-gradient px-3 mb-0" role="button">
                                             <i class="far fa-trash-alt me-2" aria-hidden="true"></i>
-                                            Delete
+                                            Remover
                                         </a>
                                     </td>
                                 </tr>

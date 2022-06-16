@@ -26,7 +26,7 @@
             <ul class="list-group">
                 <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="">ID:</strong> <?= $user->id ?></li>
                 <li class="list-group-item border-0 ps-0 text-sm"><strong class="">Role:</strong> <?= $user->role->name ?></li>
-                <li class="list-group-item border-0 ps-0 text-sm"><strong class="">Name:</strong> <?= $user->username ?></li>
+                <li class="list-group-item border-0 ps-0 text-sm"><strong class="">Username:</strong> <?= $user->username ?></li>
                 <li class="list-group-item border-0 ps-0 text-sm"><strong class="">Email:</strong> <?= $user->email ?></li>
                 <li class="list-group-item border-0 ps-0 text-sm"><strong class="">Telefone:</strong> <?= $user->telefone ?></li>
                 <li class="list-group-item border-0 ps-0 text-sm"><strong class="">Nif:</strong> <?= $user->nif ?></li>

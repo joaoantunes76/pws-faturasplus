@@ -33,7 +33,7 @@
                 <div class="form-group">
                     <label for="preco">Preço: </label>
                     <br>
-                    <input class="form-control" type="number" id="preco" name="preco" value="<?= isset($produto) ? $produto->preco : "" ?>">
+                    <input class="form-control" type="number" id="preco" name="preco" step=".10" value="<?= isset($produto) ? $produto->preco : "" ?>">
                     <?php if(isset($produto->errors)){ echo $produto->errors->on('preco'); }?>
                 </div>
                 <div class="form-group">

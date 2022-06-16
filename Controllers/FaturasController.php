@@ -34,8 +34,17 @@ class FaturasController extends BaseAuthController
                 'faturas' => $faturas
             ]);
         }
-        elseif (Auth::getUserRole() == 2 || Auth::getUserRole() == 3) {
-            $faturas = Fatura::all(array('conditions' => 'estado LIKE "Emitida"'));
+        else{
+            if (Auth::getUserRole() == 3) {
+                $faturas = Fatura::all(array('conditions' => 'estado LIKE "Emitida"'));
+            }
+            else{
+                $user = User::find(['username' => $this->auth::getUsername()]);
+                $funcionario = Funcionario::find(["user_id" => $user->id]);
+                $empresa = $funcionario->empresa;
+
+                $faturas = Fatura::all(array('joins' => array('funcionario'), 'conditions' => 'estado LIKE "Emitida" AND empresa_id = '.$empresa->id));
+            }
             $this->view('faturas/index-funcionario.php', [
                 'faturas' => $faturas
             ]);
@@ -43,11 +52,26 @@ class FaturasController extends BaseAuthController
     }
 
     //Lista de faturas para o cliente
-    public function todasAction()
+    public function todasAction($id)
     {
         $this->loginFilter($this->auth, [2, 3]);
 
-        $faturas = Fatura::all(array('conditions' => 'estado LIKE "Emitida"'));
+        if(Auth::getUserRole() == 2){
+
+            $user = User::find(['username' => $this->auth::getUsername()]);
+            $funcionario = Funcionario::find(["user_id" => $user->id]);
+            $empresa = $funcionario->empresa;
+
+            $faturas = Fatura::all(array('joins' => array('funcionario'), 'conditions' => 'estado LIKE "Emitida" AND empresa_id = '.$empresa->id));
+        }
+        else {
+            if($id != null){
+                $faturas = Fatura::all(array('joins' => array('funcionario'), 'conditions' => 'estado LIKE "Emitida" AND empresa_id = '.$id));
+            }
+            else {
+                $faturas = Fatura::all(array('conditions' => 'estado LIKE "Emitida"'));
+            }
+        }
         $this->view('faturas/todas.php', [
             'faturas' => $faturas
         ]);

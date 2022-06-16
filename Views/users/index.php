@@ -7,16 +7,15 @@
 <a href="<?= Url::toRoute('Users', 'Create') ?>" class="btn btn-success" role="button">Create</a>
 <br>
 <section class="mt-3">
-
     <form>
         <div class="row">
             <div class="col">
-                <label for="username">username</label>
-                <input type="text" name="username" id="username" class="form-control" value="<?= $_GET["username"] ?>"/>
+                <label for="pesquisa">Pesquisar</label>
+                <input type="text" name="pesquisa" id="pesquisa" class="form-control" value="<?= $_GET["pesquisa"] ?>"/>
             </div>
             <div class="col pt-1">
                 <br>
-                <input type="submit" class="btn btn-primary">
+                <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
                 <input type="submit" class="btn btn-primary" name="limpar" value="Limpar">
             </div>
         </div>

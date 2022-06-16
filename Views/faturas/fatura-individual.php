@@ -42,7 +42,7 @@
     </div>
     <br>
     <div class="p-0">
-        <table class="table table align-items-center mb-0">
+        <table class="table align-items-center mb-0">
             <thead>
             <tr>
                 <th>Quantidade</th>

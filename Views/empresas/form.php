@@ -10,7 +10,7 @@
         <div class="card-header pb-0 p-3">
             <div class="row">
                 <div class="col-md-8 d-flex align-items-center">
-                    <h6 class="mb-0">Empresa <?= isset($empresa) ? "Update" : "Create" ?></h6>
+                    <h6 class="mb-0"><?= isset($empresa) ? "Editar" : "Criar" ?> Empresa</h6>
                 </div>
             </div>
         </div>
@@ -66,7 +66,7 @@
                 </div>
                 <br>
                 <div class="form-group">
-                    <input class="btn btn-primary" type="submit" value="<?= isset($empresa) ? "Update" : "Create" ?>">
+                    <input class="btn btn-primary" type="submit" value="<?= isset($empresa) ? "Editar" : "Criar" ?>">
                 </div>
             </form>
         </div>

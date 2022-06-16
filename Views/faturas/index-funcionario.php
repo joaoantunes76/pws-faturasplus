@@ -3,7 +3,7 @@
 /* @var $faturas Fatura[] */
 ?>
 
-<a href="<?= Url::toRoute('Faturas', 'EmitirPrimeiraFase') ?>" class="btn btn-success" role="button">Emitir</a>
+<a href="<?= Url::toRoute('Faturas', 'EmitirPrimeiraFase') ?>" class="btn btn-success" role="button">Emitir Fatura</a>
 <br>
 <section class="mt-3">
     <div class="row">

@@ -31,7 +31,7 @@ class IvasController extends BaseAuthController
 
         $iva = Iva::find(['id' => $id]);
         if(is_null($iva)){
-            echo '<h1>Error:</h1><h3>No book found by that id</h3>';
+            echo '<h1>Error:</h1><h3>Nenhuma taxa de Iva foi encontrada</h3>';
         }
         else{
             $this->view('ivas/show.php', [
@@ -85,7 +85,7 @@ class IvasController extends BaseAuthController
         }
         else{
             if(is_null($iva)){
-                echo '<h1>Error:</h1><h3>No Iva found by that id</h3>';
+                echo '<h1>Error:</h1><h3>Nenhuma taxa de Iva foi encontrada</h3>';
             }
             else{
                 $this->view('ivas/form.php', [
@@ -105,7 +105,7 @@ class IvasController extends BaseAuthController
 
         $iva = Iva::find(['id' => $id]);
         if(is_null($iva)){
-            echo '<h1>Error:</h1><h3>No Iva found by that id</h3>';
+            echo '<h1>Error:</h1><h3>Nenhuma taxa de Iva foi encontrada</h3>';
         }
         else{
             $produto = Produto::find(['iva_id' => $iva->id]);

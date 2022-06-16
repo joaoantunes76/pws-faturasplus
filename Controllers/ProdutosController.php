@@ -31,7 +31,7 @@ class ProdutosController extends BaseAuthController
 
         $produto = Produto::find(['id' => $id]);
         if(is_null($produto)){
-            echo '<h1>Error:</h1><h3>No produto found by that id</h3>';
+            echo '<h1>Erro:</h1><h3>Nenhum Produto foi encontrado.</h3>';
         }
         else{
             $this->view('produtos/show.php', [
@@ -83,7 +83,7 @@ class ProdutosController extends BaseAuthController
         }
         else{
             if(is_null($produto)){
-                echo '<h1>Error:</h1><h3>No Produto found by that id</h3>';
+                echo '<h1>Erro:</h1><h3>Nenhum Produto foi encontrado.</h3>';
             }
             else{
                 $this->view('produtos/form.php', [
@@ -103,7 +103,7 @@ class ProdutosController extends BaseAuthController
 
         $produto = Produto::find(['id' => $id]);
         if(is_null($produto)){
-            echo '<h1>Error:</h1><h3>No Produto found by that id</h3>';
+            echo '<h1>Erro:</h1><h3>Nenhum Produto foi encontrado.</h3>';
         }
         else{
             $linhaFatura = Linhasfatura::find(['produto_id' => $produto->id]);

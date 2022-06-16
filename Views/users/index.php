@@ -4,7 +4,7 @@
 ?>
 
 
-<a href="<?= Url::toRoute('Users', 'Create') ?>" class="btn btn-success" role="button">Create</a>
+<a href="<?= Url::toRoute('Users', 'Create') ?>" class="btn btn-success" role="button">Criar Utilizador</a>
 <br>
 <section class="mt-3">
     <form>
@@ -26,7 +26,7 @@
         <div class="col-12">
             <div class="card mb-4">
                 <div class="card-header pb-0">
-                    <h6>Users table</h6>
+                    <h6>Utilizadores</h6>
                 </div>
                 <div class="card-body px-0 pt-0 pb-2">
                     <div class="table-responsive p-0">
@@ -64,17 +64,17 @@
                                         <a href="<?= Url::toRoute('Users', 'Show', $user->id) ?>"
                                            class="btn btn-link text-primary text-gradient px-3 mb-0" role="button">
                                             <i class="fas fa-eye me-2" aria-hidden="true"></i>
-                                            Show
+                                            Visualizar
                                         </a>
                                         <a href="<?= Url::toRoute('Users', 'Update', $user->id) ?>"
                                            class="btn btn-link text-warning text-gradient px-3 mb-0" role="button">
                                             <i class="fas fa-pencil-alt me-2" aria-hidden="true"></i>
-                                            Edit
+                                            Editar
                                         </a>
                                         <a href="<?= Url::toRoute('Users', 'Delete', $user->id) ?>"
                                            class="btn btn-link text-danger text-gradient px-3 mb-0" role="button" onclick="return confirm('Tem a certeza que quer Remover este Utilizador?');">
                                             <i class="far fa-trash-alt me-2" aria-hidden="true"></i>
-                                            Delete
+                                            Remover
                                         </a>
                                     </td>
                                     <td></td>

@@ -40,7 +40,7 @@ class EmpresasController extends BaseAuthController
 
         $empresa = Empresa::find(['id' => $id]);
         if(is_null($empresa)){
-            echo '<h1>Error:</h1><h3>No book found by that id</h3>';
+            echo '<h1>Error:</h1><h3>Nenhuma Empresa foi encontrada</h3>';
         }
         else{
             $this->view('empresas/show.php', [
@@ -68,7 +68,6 @@ class EmpresasController extends BaseAuthController
             $this->redirect("Empresas", "Index");
         }
         else{
-            $empresas = Empresa::all();
             $this->view('empresas/form.php');
         }
     }
@@ -95,7 +94,7 @@ class EmpresasController extends BaseAuthController
         }
         else {
             if(is_null($empresa)){
-                echo '<h1>Error:</h1><h3>No book found by that id</h3>';
+                echo '<h1>Error:</h1><h3>Nenhuma Empresa foi encontrada</h3>';
             }
             else{
                 $this->view('empresas/form.php', [
@@ -115,10 +114,9 @@ class EmpresasController extends BaseAuthController
 
         $empresa = Empresa::find(['id' => $id]);
         if(is_null($empresa)){
-            echo '<h1>Error:</h1><h3>No book found by that id</h3>';
+            echo '<h1>Error:</h1><h3>Nenhuma Empresa foi encontrada</h3>';
         }
         else{
-
             $funcionarios = Funcionario::find(['empresa_id' => $empresa->id]);
             if($funcionarios == null){
                 $empresa->delete();
@@ -128,7 +126,6 @@ class EmpresasController extends BaseAuthController
                 session_start();
                 $_SESSION["error"] = $error;
             }
-
 
             $this->redirect("Empresas", "index");
         }
@@ -140,44 +137,50 @@ class EmpresasController extends BaseAuthController
     public function funcionariosAction($id)
     {
         $this->loginFilter($this->auth, [2, 3]);
+        $empresa = Empresa::find(['id' => $id]);
+        if ($empresa == null){
+            echo '<h1>Error:</h1><h3>Nenhuma Empresa foi encontrada</h3>';
+        } else {
+            $funcionarios = Funcionario::all(["empresa_id" => $id]);
+            $empresa = Empresa::find(["id" => $id]);
 
-        $funcionarios = Funcionario::all(["empresa_id" => $id]);
-
-        $this->view('empresas/funcionarios.php', [
-            'funcionarios' => $funcionarios
-        ]);
+            $this->view('empresas/funcionarios.php', [
+                'funcionarios' => $funcionarios,
+                'empresa' => $empresa,
+            ]);
+        }
     }
 
     public function createfuncionarioAction($id)
     {
         $this->loginFilter($this->auth, [2, 3]);
-
-        if($_SERVER["REQUEST_METHOD"] == "POST"){
-            $user = new User();
-            $user->role_id = 2;
-            $user->username = $_POST["username"];
-            $user->password = hash('sha256', $_POST["password"]);
-            $user->email = $_POST["email"];
-            $user->telefone = $_POST["telefone"];
-            $user->nif = $_POST["nif"];
-            $user->morada = $_POST["morada"];
-            $user->codigopostal = $_POST["codigopostal"];
-            $user->localidade = $_POST["localidade"];
-            if($user->save()) {
-                $novoFuncionario = new Funcionario();
-                $novoFuncionario->user_id = $user->id;
-                $novoFuncionario->empresa_id = number_format($id);
-                $novoFuncionario->save();
-                $this->redirect("Empresas", "Index");
+        $empresa = Empresa::find(['id' => $id]);
+        if ($empresa == null){
+            echo '<h1>Error:</h1><h3>Nenhuma Empresa foi encontrada</h3>';
+        } else {
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                $user = new User();
+                $user->role_id = 2;
+                $user->username = $_POST["username"];
+                $user->password = hash('sha256', $_POST["password"]);
+                $user->email = $_POST["email"];
+                $user->telefone = $_POST["telefone"];
+                $user->nif = $_POST["nif"];
+                $user->morada = $_POST["morada"];
+                $user->codigopostal = $_POST["codigopostal"];
+                $user->localidade = $_POST["localidade"];
+                if ($user->save()) {
+                    $novoFuncionario = new Funcionario();
+                    $novoFuncionario->user_id = $user->id;
+                    $novoFuncionario->empresa_id = number_format($id);
+                    $novoFuncionario->save();
+                    $this->redirect("Empresas", "Index");
+                } else {
+                    print_r($user->errors);
+                }
+            } else {
+                $this->view('empresas/form-funcionario.php');
             }
-            else{
-                print_r($user->errors);
-                //$this->redirect("Empresas", "CreateFuncionario", $id);
-            }
-        }
-        else{
-            $empresas = Empresa::all();
-            $this->view('empresas/form-funcionario.php');
         }
     }
 }

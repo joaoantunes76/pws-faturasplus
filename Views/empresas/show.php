@@ -16,14 +16,14 @@
                     <h6 class="mb-0">Informação da Empresa</h6>
                 </div>
                 <div class="col-md-4 text-end">
-                    <a href="<?= Url::toRoute('Empresas', 'Update', $empresa->id) ?>">
-                        <i class="fas fa-pencil-alt me-2" aria-hidden="true"></i>
+                    <a style="margin-right: 5%" href="<?= Url::toRoute('Empresas', 'Update', $empresa->id) ?>">Editar
+                        <i class="fas fa-pencil-alt text-warning me-2" aria-hidden="true"></i>
                     </a>
                     <?php
                         if($role->id == 3){
                         ?>
-                            <a href="<?= Url::toRoute('Empresas', 'Delete', $empresa->id) ?>">
-                                <i class="far fa-trash-alt me-2" aria-hidden="true"></i>
+                            <a href="<?= Url::toRoute('Empresas', 'Delete', $empresa->id) ?>" onclick="return confirm('Tem a certeza que quer Remover esta Empresa?');">Remover
+                                <i class="far fa-trash-alt text-danger me-2" aria-hidden="true"></i>
                             </a>
                         <?php
                         }

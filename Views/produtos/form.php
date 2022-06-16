@@ -12,7 +12,7 @@
         <div class="card-header pb-0 p-3">
             <div class="row">
                 <div class="col-md-8 d-flex align-items-center">
-                    <h6 class="mb-0">Produto <?= isset($produto) ? "Update" : "Create" ?></h6>
+                    <h6 class="mb-0"><?= isset($produto) ? "Editar" : "Criar" ?> Produto</h6>
                 </div>
             </div>
         </div>
@@ -39,7 +39,7 @@
                 <div class="form-group">
                     <label for="stock">Stock: </label>
                     <br>
-                    <input class="form-control" type="text" id="stock" name="stock" value="<?= isset($produto) ? $produto->stock : "" ?>">
+                    <input class="form-control" type="number" id="stock" name="stock" value="<?= isset($produto) ? $produto->stock : "" ?>">
                     <?php if(isset($produto->errors)){ echo $produto->errors->on('stock'); }?>
                 </div>
                 <div class="form-group">
@@ -65,7 +65,7 @@
                 </div>
                 <br>
                 <div class="form-group">
-                    <input class="btn btn-primary" type="submit" value="<?= isset($produto) ? "Update" : "Create" ?>">
+                    <input class="btn btn-primary" type="submit" value="<?= isset($produto) ? "Editar" : "Criar" ?>">
                 </div>
             </form>
         </div>

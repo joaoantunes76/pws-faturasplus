@@ -49,7 +49,7 @@ class UsersController extends BaseAuthController
 
         $user = User::find(['id' => $id]);
         if(is_null($user)){
-            echo '<h1>Error:</h1><h3>No book found by that id</h3>';
+            echo '<h1>Erro:</h1><h3>Não foi encontrado nenhum utilizador.</h3>';
         }
         else{
             $this->view('users/show.php', [
@@ -113,7 +113,7 @@ class UsersController extends BaseAuthController
         }
         else {
             if(is_null($user)){
-                echo '<h1>Error:</h1><h3>No book found by that id</h3>';
+                echo '<h1>Erro:</h1><h3>Não foi encontrado nenhum utilizador.</h3>';
             }
             else{
                 $this->view('users/form.php', [
@@ -134,7 +134,7 @@ class UsersController extends BaseAuthController
 
         $user = User::find(['id' => $id]);
         if(is_null($user)){
-            echo '<h1>Error:</h1><h3>No book found by that id</h3>';
+            echo '<h1>Erro:</h1><h3>Não foi encontrado nenhum utilizador.</h3>';
         }
         else{
 
@@ -164,8 +164,8 @@ class UsersController extends BaseAuthController
                     $_SESSION["error"] = $error;
                 }
             }
-
+            $this->redirect("Users", "index");
         }
-        $this->redirect("Users", "index");
+
     }
 }

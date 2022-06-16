@@ -132,12 +132,39 @@ class UsersController extends BaseAuthController
     {
         $this->loginFilter($this->auth, [2, 3]);
 
-        $user = Users::find(['id' => $id]);
+        $user = User::find(['id' => $id]);
         if(is_null($user)){
             echo '<h1>Error:</h1><h3>No book found by that id</h3>';
         }
         else{
-            $user->delete();
+
+            if ($user->role_id == 2){
+                $funcionario = Funcionario::find(['user_id' => $user->id]);
+
+                $fatura = Fatura::find(['funcionario_id' => $user->id]);
+                if($fatura == null){
+                    $funcionario->delete();
+                    $user->delete();
+                }
+                else {
+                    $error = 'Existem Faturas associadas a este Utilizador.';
+                    session_start();
+                    $_SESSION["error"] = $error;
+                }
+            }
+
+            if ($user->role_id == 1){
+                $fatura = Fatura::find(['cliente_id' => $user->id]);
+                if ($fatura == null){
+                    $user->delete();
+                }
+                else {
+                    $error = 'Existem Faturas associadas a este Utilizador.';
+                    session_start();
+                    $_SESSION["error"] = $error;
+                }
+            }
+
         }
         $this->redirect("Users", "index");
     }

@@ -72,11 +72,10 @@
                                             Edit
                                         </a>
                                         <a href="<?= Url::toRoute('Users', 'Delete', $user->id) ?>"
-                                           class="btn btn-link text-danger text-gradient px-3 mb-0" role="button">
+                                           class="btn btn-link text-danger text-gradient px-3 mb-0" role="button" onclick="return confirm('Tem a certeza que quer Remover este Utilizador?');">
                                             <i class="far fa-trash-alt me-2" aria-hidden="true"></i>
                                             Delete
                                         </a>
-
                                     </td>
                                     <td></td>
                                 </tr>

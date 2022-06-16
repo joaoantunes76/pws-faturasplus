@@ -57,7 +57,7 @@
                                             Edit
                                         </a>
                                         <a href="<?= Url::toRoute('Empresas', 'Delete', $empresa->id) ?>"
-                                           class="btn btn-link text-danger text-gradient px-3 mb-0" role="button">
+                                           class="btn btn-link text-danger text-gradient px-3 mb-0" role="button" onclick="return confirm('Tem a certeza que quer Remover esta Empresa?');">
                                             <i class="far fa-trash-alt me-2" aria-hidden="true"></i>
                                             Delete
                                         </a>

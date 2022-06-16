@@ -3,9 +3,6 @@
 /* @var $roles Role[] */
 ?>
 
-
-<a href="<?= Url::toRoute('Roles', 'Create') ?>" class="btn btn-success" role="button">Create</a>
-<br>
 <section class="mt-3">
     <div class="row">
         <div class="col-12">
@@ -30,24 +27,7 @@
                                 <tr>
                                     <td class="px-5"><?= $role->id ?></td>
                                     <td><?= $role->name ?></td>
-                                    <td class="align-middle text-end">
-                                        <a href="<?= Url::toRoute('Roles', 'Show', $role->id) ?>"
-                                           class="btn btn-link text-primary text-gradient px-3 mb-0" role="button">
-                                            <i class="fas fa-eye me-2" aria-hidden="true"></i>
-                                            Show
-                                        </a>
-                                        <a href="<?= Url::toRoute('Roles', 'Update', $role->id) ?>"
-                                           class="btn btn-link text-warning text-gradient px-3 mb-0" role="button">
-                                            <i class="fas fa-pencil-alt me-2" aria-hidden="true"></i>
-                                            Edit
-                                        </a>
-                                        <a href="<?= Url::toRoute('Roles', 'Delete', $role->id) ?>"
-                                           class="btn btn-link text-danger text-gradient px-3 mb-0" role="button">
-                                            <i class="far fa-trash-alt me-2" aria-hidden="true"></i>
-                                            Delete
-                                        </a>
-
-                                    </td>
+                                    <td></td>
                                 </tr>
                                 <?php
                             }

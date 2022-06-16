@@ -118,9 +118,20 @@ class EmpresasController extends BaseAuthController
             echo '<h1>Error:</h1><h3>No book found by that id</h3>';
         }
         else{
-            $empresa->delete();
+
+            $funcionarios = Funcionario::find(['empresa_id' => $empresa->id]);
+            if($funcionarios == null){
+                $empresa->delete();
+            }
+            else {
+                $error = 'Existem Funcionários associados a esta Empresa.';
+                session_start();
+                $_SESSION["error"] = $error;
+            }
+
+
+            $this->redirect("Empresas", "index");
         }
-        $this->redirect("Empresas", "index");
     }
 
     /**

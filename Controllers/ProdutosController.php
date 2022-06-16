@@ -106,7 +106,16 @@ class ProdutosController extends BaseAuthController
             echo '<h1>Error:</h1><h3>No Produto found by that id</h3>';
         }
         else{
-            $produto->delete();
+            $linhaFatura = Linhasfatura::find(['produto_id' => $produto->id]);
+            if($linhaFatura == null){
+                $produto->delete();
+            }
+            else {
+                $error = 'Existem Linhas de Fatura associadas a este Produto.';
+                session_start();
+                $_SESSION["error"] = $error;
+            }
+
             $this->redirect("Produtos", "Index");
         }
     }

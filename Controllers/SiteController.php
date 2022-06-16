@@ -18,7 +18,27 @@ class SiteController extends BaseAuthController
         if($this->auth::getUserRole() == 1){
             $this->redirect("Faturas", "Index");
         }
-        $this->view('site/index.php');
+
+        $faturasDesteMes = Fatura::all(array('conditions' => 'MONTH(data) = MONTH(CURRENT_DATE()) AND YEAR(data) = YEAR(CURRENT_DATE())'));
+        $faturasMesPassado = Fatura::all(array('conditions' => 'MONTH(data) = MONTH(CURRENT_DATE() - INTERVAL 1 MONTH) AND YEAR(data) = YEAR(CURRENT_DATE() - INTERVAL 1 MONTH)'));
+
+        $novasFaturas = array();
+        $novasFaturas[0] = sizeof($faturasDesteMes);
+
+        if(sizeof($faturasMesPassado) > 0) {
+            $novasFaturas[1] = (sizeof($faturasDesteMes) * 100) / sizeof($faturasMesPassado);
+        }
+
+        $clientes = User::all(array('conditions' => 'role_id = 1'));
+        $funcionarios = User::all(array('conditions' => 'role_id = 2'));
+        $empresas = Empresa::all();
+
+        $this->view('site/index.php', [
+            'novasFaturas' => $novasFaturas,
+            'clientes' => sizeof($clientes),
+            'funcionarios' => sizeof($funcionarios),
+            'empresas' => sizeof($empresas)
+        ]);
 
     }
 }

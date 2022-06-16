@@ -24,6 +24,7 @@ class AuthController extends BaseController
                     $error = true;
                     $this->view('auth/login.php', $params = [
                         'bodycss' => 'body-login',
+                        'error' => $error
                     ],
                         'template-login');
                 }

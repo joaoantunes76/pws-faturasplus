@@ -42,6 +42,17 @@ class FaturasController extends BaseAuthController
         }
     }
 
+    //Lista de faturas para o cliente
+    public function todasAction()
+    {
+        $this->loginFilter($this->auth, [2, 3]);
+
+        $faturas = Fatura::all(array('conditions' => 'estado LIKE "Emitida"'));
+        $this->view('faturas/todas.php', [
+            'faturas' => $faturas
+        ]);
+    }
+
     //vista da fatura individual para o cliente
     public function faturaindividualAction($faturaId)
     {

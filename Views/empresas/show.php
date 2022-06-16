@@ -19,6 +19,9 @@
                     <a style="margin-right: 5%" href="<?= Url::toRoute('Empresas', 'Update', $empresa->id) ?>">Editar
                         <i class="fas fa-pencil-alt text-warning me-2" aria-hidden="true"></i>
                     </a>
+                    <a style="margin-right: 5%" href="<?= Url::toRoute('Faturas', 'Todas', $empresa->id) ?>">Ver Faturas
+                        <i class="fas fa-eye text-info me-2" aria-hidden="true"></i>
+                    </a>
                     <?php
                         if($role->id == 3){
                         ?>

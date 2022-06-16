@@ -49,7 +49,7 @@
                 <div class="form-group">
                     <label for="password">Password: </label>
                     <br>
-                    <input class="form-control" type="password" id="password" name="password" value="<?= isset($user) ? $user->username : "" ?>">
+                    <input class="form-control" type="password" id="password" name="password" required value="">
                     <?php if(isset($user->errors)){ echo $user->errors->on('password'); }?>
                 </div>
                 <div class="form-group">

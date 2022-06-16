@@ -77,7 +77,7 @@ class UsersController extends BaseAuthController
             $user->codigopostal = $_POST["codigopostal"];
             $user->localidade = $_POST["localidade"];
             $user->save();
-            $this->redirect("Users", "Index");
+            $this->redirect("Users", "index");
         }
         else{
             $user = User::all();
@@ -95,10 +95,14 @@ class UsersController extends BaseAuthController
         $this->loginFilter($this->auth, [2, 3]);
 
         $user = User::find(['id' => $id]);
+        $logout = false;
         if($_SERVER["REQUEST_METHOD"] == "POST"){
             $user->role_id = 1;
             if(isset($_POST["role_id"])) {
                 $user->role_id = $_POST["role_id"];
+            }
+            if($user->username == $this->auth::getUsername()){
+                $logout = true;
             }
             $user->username = $_POST["username"];
             $user->password = hash('sha256', $_POST["password"]);
@@ -109,7 +113,13 @@ class UsersController extends BaseAuthController
             $user->codigopostal = $_POST["codigopostal"];
             $user->localidade = $_POST["localidade"];
             $user->save();
-            $this->redirect("Users", "index");
+
+            if(!$logout) {
+                $this->redirect("Users", "Index");
+            }
+            else{
+                $this->redirect('Auth', 'logout');
+            }
         }
         else {
             if(is_null($user)){

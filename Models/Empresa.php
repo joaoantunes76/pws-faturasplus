@@ -17,6 +17,10 @@
 class Empresa extends \ActiveRecord\Model
 {
 
+    static $validates_numericality_of = array(
+        array('telefone', 'less_than_or_equal_to' => 999999999, 'greater_than_or_equal_to' => 100000000)
+    );
+
     static $has_many = array(
         array('funcionarios')
     );

@@ -89,8 +89,14 @@ class EmpresasController extends BaseAuthController
             $empresa->codigopostal = $_POST["codigopostal"];
             $empresa->localidade = $_POST["localidade"];
             $empresa->capitalsocial = $_POST["capitalsocial"];
-            $empresa->save();
-            $this->redirect("Empresas", "index");
+            if($empresa->save()) {
+                $this->redirect("Empresas", "index");
+            }
+            else{
+                $this->view('empresas/form.php', [
+                    'empresa' => $empresa
+                ]);
+            }
         }
         else {
             if(is_null($empresa)){
